@@ -22,9 +22,9 @@ render() {
       <h1>Sign Up</h1>
 
       <input type ="text" placeholder ="email"/>
-      <input type="password" placeholder="password" value = {this.state.password} onChange ={this.password} />
-      <input type="password" placeholder = "confirm password" value = {this.state.confirmPassword} onChange = {this.passwordConfirm}/>
-      <input type ="button" value = "Submit"  input onClick = {this.passwordCheck}/>
+      <input type="password" placeholder="password"  />
+      <input type="password" placeholder = "confirm password"/>
+      <input type ="button" value = "Submit"/>
       </div>
   )
 }
