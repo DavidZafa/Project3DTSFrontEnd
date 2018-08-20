@@ -9,4 +9,15 @@ class Login extends Component(){
     }
   }
 
+render () {
+  return (
+    <div className = 'form'>
+    <h1>Sign In</h1>
+
+    <input type ="text" placeholder ="email"/>
+      <input type="password" placeholder="password" />
+  )
 }
+}
+
+export default Login
