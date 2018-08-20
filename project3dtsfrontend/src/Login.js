@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 
-class Login extends Component(){
-  constructor(props){
-    super(props)
+class Login extends Component{
+  constructor(){
+    super()
     this.state = {
       email: "",
       password: ""
@@ -16,6 +16,8 @@ render () {
 
     <input type ="text" placeholder ="email"/>
       <input type="password" placeholder="password" />
+      <input type ="button" value = "Submit"/>
+      </div>
   )
 }
 }
