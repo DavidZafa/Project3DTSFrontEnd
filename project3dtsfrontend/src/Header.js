@@ -1,16 +1,20 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-
+import {Button} from 'react-materialize'
+import './Header.css'
 const Header = () => (
-  <header>
-      <nav>
+
+
+  <header className = "navigate">
+
         <ul>
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/signup'>Signup</Link></li>
-          <li><Link to='/login'>Login</Link></li>
-          <li><Link to = '/animals'>Animals</Link></li>
+          <li><Button><Link to='/'>Home</Link></Button></li>
+          <li><Button><Link to='/signup'>Signup</Link></Button></li>
+          <li><Button><Link to='/login'>Login</Link></Button></li>
+          <li><Button><Link to = '/animals'>Animals</Link></Button></li>
+          <li><Button><Link to = '/donate'>Donate</Link></Button></li>
         </ul>
-      </nav>
+
     </header>
 )
 

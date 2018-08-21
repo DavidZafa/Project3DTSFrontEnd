@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import './News.css'
 class News extends Component {
   constructor(){
     super()
@@ -14,8 +14,9 @@ class News extends Component {
 
   render(){
     return(
-      <div>
+      <div className = "news">
       <h1>New Goes Here</h1>
+      <h2>And Here</h2>
       </div>
     )
   }

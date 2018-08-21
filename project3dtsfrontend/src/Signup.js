@@ -18,7 +18,7 @@ super ()
 }
 render() {
   return (
-    <div className='form'>
+    <div className='signup'>
       <h1>Sign Up</h1>
 
       <input type ="text" placeholder ="email"/>
