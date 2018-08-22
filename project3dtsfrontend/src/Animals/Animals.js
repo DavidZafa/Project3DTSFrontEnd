@@ -1,20 +1,30 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 
-
+const url = 'http://localhost:3001/animals'
 class Animals extends Component {
-  constructor(props){
-    super(props)
+  constructor(){
+    super()
     this.state = {
-      animal:"Beluga Whale",
-      image: "https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA4NC84NjEvb3JpZ2luYWwvYmVsdWdhLXdoYWxlLmpwZw=="
-    }
+      animals:[]
   }
+}
+
+componentDidMount(){
+  axios.get(url)
+  .then(res => {
+    console.log(res.data)
+    this.setState({
+      animals: this.state.animals.push(res.data)
+    })
+  })
+}
 
 render () {
   return (
     <div>
-    <h1>{this.state.animal}</h1>
-      <img src = {this.state.image}/>
+    <h1>Animals</h1>
+      <img src = ''/>
     </div>
   )
 }

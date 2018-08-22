@@ -4,7 +4,12 @@ import Main from '../Main/Main'
 import { Route, Link, Switch } from "react-router-dom"
 
 class App extends Component {
+    constructor(){
+      super()
+      this.state = {
 
+      }
+    }
 
   render() {
     return (
