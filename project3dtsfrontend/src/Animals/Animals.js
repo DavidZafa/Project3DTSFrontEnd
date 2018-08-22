@@ -17,9 +17,10 @@ class Animals extends Component {
     axios
       .get(URL)
       .then(res => {
-        console.log(res.data);
+        let animals = res.data;
+        console.log(animals);
         //handle success
-        this.setState({ animals: res.data });
+        this.setState({ animals });
       })
       .catch(error => {
         //handle error
@@ -28,19 +29,15 @@ class Animals extends Component {
   }
 
   render() {
-    if (this.state.animals != undefined) {
-      return (
-        <ul>
-          {this.state.animals.map(animal => {
-            <li>
-              <div key={animal._id}>{animal.name}</div>
-            </li>;
-          })}
-        </ul>
-      );
-    } else {
-      return <div>Loading...</div>;
-    }
+    const animalList = this.state.animals.map(animal => (
+      <li key={animal.name}>{animal.species}</li>
+    ));
+
+    return (
+      <div className="animal">
+        <ul>{animalList}</ul>
+      </div>
+    );
   }
 }
 
