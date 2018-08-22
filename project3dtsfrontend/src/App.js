@@ -7,7 +7,6 @@ import axios from 'axios'
 import ShowAnimals from './ShowAnimals'
 import Signup from './Signup'
 import Login from './Login'
-import Logout from './Logout'
 class App extends Component {
   constructor() {
     super()
@@ -37,7 +36,7 @@ class App extends Component {
 
   handleInput(e){
     this.setState({
-      [e.target.name]: e.target.value
+      [e.targer.name]: e.target.value
     })
   }
   handleSignUp(e){
@@ -55,42 +54,13 @@ class App extends Component {
       <Switch>
       <Route path = '/signup'
       render={(props) =>{
-        return(
-          <Signup isLoggedIn={this.state.isLoggedIn} handleInput={this.handleInput} handleSignup={this.handleSignUp}/>
-        )
-      }}
-      />
-      <Route path = '/logout'
-      render={(props) =>{
-        return(
-          <Logout isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut}/>
-        )
-      }}
-      />
-      <Route path = '/login'
-      render={(props) => {
-        return(
-          Login isLoggedIn={this.state.isLoggedIn} handleInput={this.handleInput} handleLogIn={this.handleLogIn}/>
-        )
-      }}
-      />
-      <Route path = '/'
-      render = {() =>{
-      return (
-        <Home isLoggedIn={this.state.isLoggedIn} />
-        Main
-      )
-    }}
-    />
-    </Switch>
-    </div>
-    </div>
+        </div>
   // <Header/>
   // <Main/>
 
 
 
-    )
+    );
   }
 }
 
