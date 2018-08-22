@@ -1,26 +1,47 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
+import axios from "axios";
+// import ReactDOM from "react-dom";
+// import { lightBlack } from "material-ui/styles/colors";
+// import Route from "react-router-dom";
 
-
+// const axios = require("axios");
+const URL = "http://localhost:3001/animals";
 class Animals extends Component {
-  constructor(props){
-    super(props)
+  constructor() {
+    super();
     this.state = {
-      animal:"Beluga Whale",
-      image: "https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA4NC84NjEvb3JpZ2luYWwvYmVsdWdhLXdoYWxlLmpwZw=="
-    }
+      animals: []
+    };
+  }
+  componentDidMount() {
+    axios
+      .get(URL)
+      .then(res => {
+        console.log(res.data);
+        //handle success
+        this.setState({ animals: res.data });
+      })
+      .catch(error => {
+        //handle error
+        console.log(error);
+      });
   }
 
-render () {
-  return (
-    <div>
-    <h1>{this.state.animal}</h1>
-      <img src = {this.state.image}/>
-    </div>
-  )
+  render() {
+    if (this.state.animals != undefined) {
+      return (
+        <ul>
+          {this.state.animals.map(animal => {
+            <li>
+              <div key={animal._id}>{animal.name}</div>
+            </li>;
+          })}
+        </ul>
+      );
+    } else {
+      return <div>Loading...</div>;
+    }
+  }
 }
 
-
-}
-
-
-export default Animals
+export default Animals;
