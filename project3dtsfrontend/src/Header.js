@@ -1,21 +1,40 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import {Button} from 'react-materialize'
+import {Navbar, NavItem} from 'react-materialize'
 import './Header.css'
-const Header = () => (
+
+class Header extends Component {
+  render () {
+    let navBarItems = [<NavItem key={1} href='/'>Animals</NavItem>]
+    if (this.props.isLoggedIn) {
+      navBarItems.push(<NavItem key={2} href='/logout'>Log Out</NavItem>)
+    } else {
+      navBarItems.push(<NavItem key={3} href='/signup'>Sign Up</NavItem>)
+      navBarItems.push(<NavItem key={4} href='/login'>Log In</NavItem>)
+    }
+    return (
+      <Navbar brand='DangerZone' className='nav' right>
+        {navBarItems}
+      </Navbar>
+    )
+  }
+}
 
 
-  <header className = "navigate">
-
-        <ul>
-          <li><Button><Link to='/'>Home</Link></Button></li>
-          <li><Button><Link to='/signup'>Signup</Link></Button></li>
-          <li><Button><Link to='/login'>Login</Link></Button></li>
-          <li><Button><Link to = '/animals'>Animals</Link></Button></li>
-          <li><Button><Link to = '/donate'>Donate</Link></Button></li>
-        </ul>
-
-    </header>
-)
+// const Header = () => (
+//
+//
+//   <header>
+//
+//
+//           <Button><Link to='/'>Home</Link></Button>
+//           <Button><Link to='/signup'>Signup</Link></Button>
+//           <Button><Link to='/login'>Login</Link></Button>
+//           <Button><Link to = '/animals'>Animals</Link></Button>
+//           <Button><Link to = '/donate'>Donate</Link></Button>
+//
+//
+//     </header>
+// )
 
 export default Header

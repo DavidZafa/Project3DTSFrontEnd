@@ -1,22 +1,24 @@
 import React, {Component} from 'react'
 
 class Login extends Component{
-  constructor(){
-    super()
-    this.state = {
-      email: "",
-      password: ""
-    }
-  }
+
 
 render () {
   return (
-    <div className = 'form'>
-    <h1>Sign In</h1>
+    <div>
+        <h2>Log In</h2>
 
-    <input type ="text" placeholder ="email"/>
-      <input type="password" placeholder="password" />
-      <input type ="button" value = "Submit"/>
+        <form>
+          <div>
+            <label htmlFor='email'>Email</label>
+            <input type='text' name='email' onChange={this.props.handleInput} />
+          </div>
+          <div>
+            <label htmlFor='password'>Password</label>
+            <input type='text' name='password' onChange={this.props.handleInput} />
+          </div>
+          <input value='Submit' type='submit' onClick={this.props.handleLogIn} />
+        </form>
       </div>
   )
 }

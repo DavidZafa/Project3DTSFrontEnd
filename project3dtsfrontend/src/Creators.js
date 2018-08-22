@@ -1,16 +1,14 @@
 import React, {Component} from 'react'
-
+import './Creators.css'
 
 const Creators = () => (
 
     <footer>
-    <nav>
-      <ul>
-        <li><a href = "https://github.com/DavidZafa">David</a></li>
-        <li><a href = "https://github.com/tamitchell">Tasha</a></li>
-        <li><a href = "https://github.com/jsc397">Stephanie</a></li>
-      </ul>
-    </nav>
+
+    <a href = "https://github.com/DavidZafa">David</a>
+    <a href = "https://github.com/tamitchell">Tasha</a>
+    <a href = "https://github.com/jsc397">Stephanie</a>
+
     </footer>
 
 )
