@@ -36,14 +36,14 @@ class User extends Component {
   }
 
   render() {
-      console.log(this.state.user)
-    let showAnimalList = this.state.user.animalList.map(animal => {
-      return (
-        <div key={animal._id}>
-          <AnimalList data={animal} />
-        </div>
-      );
-    });
+    //   console.log(this.state.user)
+    // let showAnimalList = this.state.user.animalList.map(animal => {
+    //   return (
+    //     <div key={animal._id}>
+    //       <AnimalList data={animal} />
+    //     </div>
+    //   );
+    // });
     return (
       <div>
         <div className="user-box">
@@ -58,7 +58,7 @@ class User extends Component {
         </div>
         <div className="user-animallist">
           <h3>Animal List</h3>
-          {showAnimalList}
+          {/* {showAnimalList} */}
         </div>
       </div>
     );
