@@ -30,14 +30,16 @@ class Animals extends Component {
 
   render() {
     const animalList = this.state.animals.map(animal => (
-      <li key={animal.name}>{animal.species}</li>
+      <div>
+        <ul>
+          <li key={animal._id}>{animal.name}</li>
+          <li> {animal.species}</li>
+          <li>{animal.about}</li>
+        </ul>
+      </div>
     ));
 
-    return (
-      <div className="animal">
-        <ul>{animalList}</ul>
-      </div>
-    );
+    return <div className="animal">{animalList}</div>;
   }
 }
 
