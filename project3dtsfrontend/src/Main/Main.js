@@ -1,11 +1,11 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
-import Signup from './Signup'
-import Login from './Login'
-import Home from './Home'
-import News from './News'
-import Donate from './Donate'
-import Animals from './Animals'
+import Signup from '../Signup/Signup'
+import Login from '../Login/Login'
+import Home from '../Home/Home'
+import News from '../News/News'
+import Donate from '../Donate/Donate'
+import Animals from '../Animals/Animals'
 
 
 const Main = () => (

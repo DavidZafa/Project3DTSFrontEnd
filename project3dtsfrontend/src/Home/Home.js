@@ -1,7 +1,7 @@
 import React from 'react'
-import News from './News'
+import News from '../News/News'
 import './Home.css'
-import Creators from './Creators'
+import Creators from '../Creators/Creators'
 const Home = () => (
   <div className = "home">
   <h1> Welcome To The Danger Zone</h1>
