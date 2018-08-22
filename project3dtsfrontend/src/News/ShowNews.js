@@ -13,7 +13,7 @@ class ShowNews extends Component {
         return(
                 <div>
                     <h1>{newsarticle.title}</h1>
-                    <img src={newsarticle.imageUrl}/>
+                    <img src={newsarticle.imageUrl} alt=""/>
                     <p>{newsarticle.author}</p>
                     <p>{newsarticle.description}</p>
                     <div>{newsarticle.post}</div>
