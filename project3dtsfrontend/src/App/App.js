@@ -43,24 +43,23 @@ class App extends Component {
       }
 
       handleSignUp = e => {
-        console.log(this.state);
         e.preventDefault();
-        axios
-          .post(signupURL, {
-            username: this.state.username,
+        axios.post(signupURL, {
+            email: this.state.email,
             password: this.state.password
           })
           .then(response => {
             localStorage.token = response.data.token;
-            // this.props.history.push("/profile");
+            this.setState({isLoggedIn: true})
+            console.log(localStorage.token)
           })
           .catch(err => console.log(err));
       };
 
-      handleLogIn (e) {
+      handleLogIn = e => {
         e.preventDefault()
         axios.post(loginURL, {
-            username: this.state.username,
+            email: this.state.email,
             password: this.state.password
         })
         .then(res => {
@@ -94,7 +93,7 @@ class App extends Component {
     return(<Signup 
       isLoggedIn = {this.state.isLoggedIn} 
       handleInput = {this.handleInput} 
-      handleSignUp={this.handleSignup}  />
+      handleSignUp={this.handleSignUp}  />
   )
   }}
   />
