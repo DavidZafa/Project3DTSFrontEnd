@@ -1,26 +1,36 @@
-import React, {Component} from 'react'
+
+import React, { Component } from 'react';
+
+class Signup extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
 
 
-class Signup extends React.Component {
   render () {
     return (
+      <form>
       <div>
-        <h2>Sign Up</h2>
-
-        <form>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input type='text' name='email' onChange={this.props.handleInput} />
-          </div>
-
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input type='text' name='password' onChange={this.props.handleInput} />
-          </div>
-          <input value='Submit' type='submit' onClick={this.props.handleSignUp} />
-        </form>
-      </div>
+        <h2>Sign up</h2>
+        <label htmlFor="email">Email address</label>
+          <input type="email" required className="form-control" name="email"
+            placeholder="Email"
+            value={this.state.email}
+            onChange={this.handleUserInput}  />
+          <label htmlFor="password">Password</label>
+          <input type="password" className="form-control" name="password"
+            placeholder="Password"
+            value={this.state.password}
+            onChange={this.handleUserInput}  />
+        </div>
+        <button type="submit" className="btn btn-primary" >Sign up</button>
+      </form>
     )
   }
 }
+
 export default Signup;
