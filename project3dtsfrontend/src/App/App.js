@@ -11,7 +11,7 @@ import Donate from '../Donate/Donate'
 import Signup from '../Signup/Signup'
 import '../App/App.css'
 
-const signupURL = 'http://localhost:3001/user/signup'
+// const signupURL = 'http://localhost:3001/user/signup'
 const loginURL = 'http://localhost:3001/user/login'
 class App extends Component {
   constructor (props) {
