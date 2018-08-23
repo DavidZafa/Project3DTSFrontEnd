@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-
+import './Header.css'
 import {Link} from 'react-router-dom'
 
 class Header extends Component{
@@ -8,18 +8,18 @@ class Header extends Component{
     return(
       <header>
       <nav>
-        <ul>
-          <li><Link to='/'>Home</Link></li>
-          {this.props.isLoggedIn ? (<div><li><Link to='/user/:id'>User Page</Link></li>
-          <li><Link to="/">Log Out</Link></li></div>
+        
+          <div className="nav-item"><Link to='/'>Home</Link></div>
+          {this.props.isLoggedIn ? (<div><div className="nav-item"><Link to='/user/:id'>User Page</Link></div>
+          <div className="nav-item"><Link to="/">Log Out</Link></div></div>
 ) : (<div>
-  <li><Link to='/signup'>Signup</Link></li>
-          <li><Link to='/login'>Login</Link></li>
+  <div className="nav-item"><Link to='/signup'>Signup</Link></div>
+          <div className="nav-item"><Link to='/login'>Login</Link></div>
 </div>
 )}
-       <li><Link to = '/animals'>Animals</Link></li>
-          <li><Link to ='/donate'>Donate</Link></li>
-        </ul>
+       <div className="nav-item"><Link to = '/animals'>Animals</Link></div>
+          <div className="nav-item"><Link to ='/donate'>Donate</Link></div>
+        
       </nav>
     </header>
     )

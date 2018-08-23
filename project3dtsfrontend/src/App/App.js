@@ -9,6 +9,7 @@ import News from '../News/News'
 import Animals from '../Animals/Animals'
 import Donate from '../Donate/Donate'
 import Signup from '../Signup/Signup'
+import '../App/App.css'
 
 const signupURL = 'http://localhost:3001/user/signup'
 const loginURL = 'http://localhost:3001/user/login'

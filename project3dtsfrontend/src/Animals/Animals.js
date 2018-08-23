@@ -37,6 +37,7 @@
 
 import React, { Component } from "react";
 import axios from "axios";
+import '../Animals/Animals.css'
 // import ReactDOM from "react-dom";
 // import { lightBlack } from "material-ui/styles/colors";
 // import Route from "react-router-dom";
@@ -65,21 +66,23 @@ class Animals extends Component {
   }
   render() {
     const animalList = this.state.animals.map((animal, i) => (
-      <div>
+      <div className="card animal-container">
         <ul key={i}>
-          <li>
-            <img src={animal.picture} alt="error" />
-          </li>
+          <div class="card-image img-container">
+            <img src={animal.picture} className="animals-img" alt="error" />
+          </div>
+          <div className="card-content">
           <li>Name: {animal.name}</li>
           <li>Scientific Name: {animal.species}</li>
           <li>Region: {animal.region}</li>
           <li>Habitat: {animal.habitat}</li>
           <li>Region: {animal.population}</li>
           <li>{animal.about}</li>
+          </div>
         </ul>
       </div>
     ));
-    return <div className="animal">{animalList}</div>;
+    return <div className="animal-wrapper">{animalList}</div>;
   }
 }
 export default Animals;

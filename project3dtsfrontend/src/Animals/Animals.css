@@ -1,0 +1,25 @@
+
+.animal-wrapper{
+    height:100%;
+    display: flex;
+    flex-flow: row wrap;
+    padding-top: 3em;
+    justify-content: center;
+    border: 1px solid orange;
+}
+.animal-container {
+    margin: 1em;
+   width: 40%; 
+}
+
+.img-container{
+    width: 100%;
+    height:100%;
+    max-width: 400px;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.animals-img {
+    width: 250px;
+}
