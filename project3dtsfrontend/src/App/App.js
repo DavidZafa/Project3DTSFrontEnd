@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../Header/Header'
-import Main from '../Main/Main'
-import { Route, Link, Switch, Redirect } from "react-router-dom"
+import { Route, Switch,} from "react-router-dom"
 import axios from 'axios'
 import Home from '../Home/Home'
 import Login from '../Login/Login'
@@ -92,31 +91,23 @@ class App extends Component {
   <Route exact path = '/' component = {Home}/>
   <Route exact path = '/login' render = {(props) => {
     return(
-    <Login 
-    isLoggedIn={this.state.isLoggedIn} 
-    handleInput={this.handleInput} 
+    <Login
+    isLoggedIn={this.state.isLoggedIn}
+    handleInput={this.handleInput}
     handleLogIn = {this.handleLogIn} />
     )
   }}
   />
   <Route path = '/signup' render ={(props) => {
-    return(<Signup 
-      isLoggedIn = {this.state.isLoggedIn} 
-      handleInput = {this.handleInput} 
+    return(<Signup
+      isLoggedIn = {this.state.isLoggedIn}
+      handleInput = {this.handleInput}
       handleSignUp={this.handleSignup}  />
   )
   }}
   />
 
   <Route path = '/user/:id' component = {User}/>
-
-
-
-
-
-
-
-
   <Route path = '/news' component = {News}/>
   <Route path = '/animals' component = {Animals}/>
   <Route path ='/donate' component = {Donate}/>

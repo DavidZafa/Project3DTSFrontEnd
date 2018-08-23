@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 import './News.css'
 import axios from 'axios'
 import ShowNews from '../News/ShowNews'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
 
 const url = 'http://localhost:3001/news'
 class News extends Component {

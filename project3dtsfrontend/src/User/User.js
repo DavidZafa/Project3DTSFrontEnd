@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import AnimalList from "../User/AnimalList";
-import ShowNews from '../News/ShowNews'
 // import {
 //   Card,
 //   CardActions,

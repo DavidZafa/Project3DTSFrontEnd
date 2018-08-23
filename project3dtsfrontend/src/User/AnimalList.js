@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from 'axios'
 class AnimalList extends Component {
     constructor(props){
         super(props)
@@ -9,7 +8,7 @@ class AnimalList extends Component {
     }
 
     handleDelete = (e) => {
-        const { name, picture, species, region, habitat, endangeredLvl, population, about } = this.state.animal
+        // const { name, picture, species, region, habitat, endangeredLvl, population, about } = this.state.animal
         // axios.delete('')
     }
 
@@ -25,9 +24,9 @@ class AnimalList extends Component {
                 <p>{animal.endangeredLvl}</p>
                 <p>{animal.population}</p>
                 <div>{animal.about}</div>
-                
 
-                
+
+
                 <button type="button" onClick={this.handleDelete}>Remove Animal</button> */}
 
             </div>
