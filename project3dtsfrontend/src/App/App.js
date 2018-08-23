@@ -3,8 +3,15 @@ import Header from '../Header/Header'
 import Main from '../Main/Main'
 import { Route, Link, Switch } from "react-router-dom"
 import axios from 'axios'
-const signupURL = 'http://localhost:3000/user/signup'
-const loginURL = 'http://localhost:3000/user/login'
+import Home from '../Home/Home'
+import Login from '../Login/Login'
+import User from '../User/User'
+import News from '../News/News'
+import Animals from '../Animals/Animals'
+import Donate from '../Donate/Donate'
+import Signup from '../Signup/Signup'
+const signupURL = 'http://localhost:3001/user/signup'
+const loginURL = 'http://localhost:3001/user/login'
 class App extends Component {
   constructor (props) {
     super(props);
@@ -15,7 +22,7 @@ class App extends Component {
     }
   }
 
-componentDidMount () {
+ComponentDidMount () {
   if(localStorage.token) {
     this.setState({
       isLoggedIn: true
@@ -46,7 +53,7 @@ componentDidMount () {
 
   handleLogIn(e) {
     e.preventDefault()
-    axios.post(loginURL, {username: this.state.username, password: this.state.passworn})
+    axios.post(loginURL, {username: this.state.username, password: this.state.password})
     .then(res => {
       localStorage.token = res.data.token
       this.setState({isLoggedIn: true})
@@ -63,7 +70,32 @@ componentDidMount () {
 
 
   <Header/>
-  <Main/>
+  <Switch>
+  <Route exact path = '/' component = {Home}/>
+  <Route exact path = '/login' render = {(props) => {
+    return(<Login isLoggedIn={this.state.isLoggedIn} handleInput={this.handleInput} handleLogIn = {this.handleLogIn} />
+    )
+  }}
+  />
+  <Route path = '/signup' render ={(props) => {
+    return(<Signup isLoggedIn = {this.state.isLoggedIn} handleInput = {this.handleInput} handleSignUp={this.handleSignup}  />
+  )
+  }}
+  />
+
+  <Route path = '/user/:id' component = {User}/>
+
+
+
+
+
+
+
+
+  <Route path = '/news' component = {News}/>
+  <Route path = '/animals' component = {Animals}/>
+  <Route path ='/donate' component = {Donate}/>
+  </Switch>
 </div>
 
 
