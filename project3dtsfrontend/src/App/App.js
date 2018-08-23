@@ -41,22 +41,7 @@ class App extends Component {
         this.setState(userState);
       }
 
-      handleSignUp = e => {
-        console.log(this.state);
-        e.preventDefault();
-        axios
-          .post(signupURL, {
-            email: this.state.email,
-            password: this.state.password
-          })
-          .then(response => {
-            localStorage.token = response.data.token;
-            // this.props.history.push("/profile");
-          })
-          .catch(err => console.log(err));
-      };
-
-      handleLogIn (e) {
+      handleLogIn = e => {
         e.preventDefault()
         axios.post(loginURL, {
             email: this.state.email,

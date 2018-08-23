@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 class Signup extends Component {
-
+    
 
   render () {
     return (
@@ -46,7 +46,7 @@ class Signup extends Component {
           />
         </div>
 
-        <input type="submit" value="create user" onClick={this.props.handleSignUp} />
+        <input type="submit" value="submit" onClick={this.props.handleSignUp} />
       </form>
     </div>
     )
