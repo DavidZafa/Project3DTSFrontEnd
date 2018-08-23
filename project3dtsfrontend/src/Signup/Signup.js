@@ -25,13 +25,13 @@ class Signup extends Component {
       <h1>Sign Up</h1>
       <form>
         <div className="">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="email">Email</label>
           <input
             type="text"
-            id="username"
+            id="email"
             onChange={this.props.handleInput}
-            name="username"
-            placeholder="username"
+            name="email"
+            placeholder="email"
           />
         </div>
 

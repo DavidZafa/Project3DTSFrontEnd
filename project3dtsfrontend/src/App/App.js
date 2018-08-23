@@ -47,7 +47,7 @@ class App extends Component {
         e.preventDefault();
         axios
           .post(signupURL, {
-            username: this.state.username,
+            email: this.state.email,
             password: this.state.password
           })
           .then(response => {
@@ -60,7 +60,7 @@ class App extends Component {
       handleLogIn (e) {
         e.preventDefault()
         axios.post(loginURL, {
-            username: this.state.username,
+            email: this.state.email,
             password: this.state.password
         })
         .then(res => {
@@ -72,7 +72,7 @@ class App extends Component {
 
      handleLogOut() {
       this.setState({
-        username: '',
+        email: '',
         password: '',
         isLoggedIn: false,
         redirect: true
