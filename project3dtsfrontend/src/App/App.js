@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Header from '../Header/Header'
 import Main from '../Main/Main'
-import { Route, Link, Switch } from "react-router-dom"
+import { Route, Link, Switch, Redirect } from "react-router-dom"
 import axios from 'axios'
 import Home from '../Home/Home'
 import Login from '../Login/Login'
@@ -70,6 +70,15 @@ class App extends Component {
         .catch(err => console.log(err))
     }
 
+     handleLogOut() {
+      this.setState({
+        username: '',
+        password: '',
+        isLoggedIn: false,
+        redirect: true
+      })
+      localStorage.clear()
+    }
 
 
 

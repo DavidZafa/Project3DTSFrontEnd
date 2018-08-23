@@ -1,5 +1,6 @@
 
 import React, { Component } from "react";
+
 import {Link} from 'react-router-dom'
 
 class Header extends Component{
@@ -9,7 +10,8 @@ class Header extends Component{
       <nav>
         <ul>
           <li><Link to='/'>Home</Link></li>
-          {this.props.isLoggedIn ? (          <li><Link to='/user/:id'>User Page</Link></li>
+          {this.props.isLoggedIn ? (<div><li><Link to='/user/:id'>User Page</Link></li>
+          <li><Link to="/">Log Out</Link></li></div>
 ) : (<div>
   <li><Link to='/signup'>Signup</Link></li>
           <li><Link to='/login'>Login</Link></li>
