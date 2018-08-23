@@ -24,7 +24,7 @@ render () {
   return (
     <div>
     <h1>Animals</h1>
-      <img src = ''/>
+      <img src = '' alt=""/>
     </div>
   )
 }

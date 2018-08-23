@@ -13,7 +13,7 @@ class AnimalList extends Component {
         return(
             <div>
                 <h1>{animal.name}</h1>
-                <img src={animal.picture} />
+                <img src={animal.picture} alt=""/>
                 <p>{animal.species}</p>
                 <p>{animal.region}</p>
                 <p>{animal.habitat}</p>
