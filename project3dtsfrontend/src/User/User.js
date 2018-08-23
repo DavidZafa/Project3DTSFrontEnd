@@ -36,8 +36,8 @@ class User extends Component {
   }
 
   render() {
-    let showAnimalList
-    if (this.state.user.animalList != undefined) {
+    let showAnimalList;
+    if (this.state.user.animalList !== undefined) {
       showAnimalList = this.state.user.animalList.map(animal => {
         return (
           <div key={animal._id}>
