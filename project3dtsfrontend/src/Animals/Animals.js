@@ -32,9 +32,10 @@ class Animals extends Component {
     const animalList = this.state.animals.map(animal => (
       <div>
         <ul>
-          <li key={animal._id}>{animal.name}</li>
-          <li> {animal.species}</li>
-          <li>{animal.about}</li>
+          <li key="0">Name: {animal.name}</li>
+          <li key="1">Scientific Name: {animal.species}</li>
+          <li key="2">Region: {animal.region}</li>
+          <li key="3">{animal.about}</li>
         </ul>
       </div>
     ));
