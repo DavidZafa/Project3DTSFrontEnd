@@ -123,6 +123,14 @@ class App extends Component {
        .catch(err => console.log(err))
       
     }
+
+    handleDelete = (e) => {
+      e.preventDefault()
+      const {name} = this.state.selectAnimal
+      let url = 'http://localhost:3001/user/' + this.state.userID.id + '/animal/name/delete'
+      axios.delete(url, {name})
+      .catch(err => console.log(err))
+  }
     
 
   render() {
@@ -166,7 +174,7 @@ class App extends Component {
 
   <Route path ={`/user/${user.id}`} render={() => {
     return(
-        <User userID={user.id}/>
+        <User handleDelete={this.handleDelete} getAnimal={this.getAnimal} userID={user.id}/>
     )
   }}/>
 
