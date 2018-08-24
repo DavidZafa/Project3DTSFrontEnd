@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom'
 import axios from "axios";
 import AnimalList from "../User/AnimalList";
 // import ShowNews from '../News/ShowNews'
@@ -17,7 +18,7 @@ class User extends Component {
     //use this when signup/login works
     // axios.get(url + this.props.match.params.id)
     axios
-      .get(url + "5b7d60c42fa6870605b3f9b7")
+      .get(url + "5b7f40390869af42e15a33d3")
       .then(res => {
         console.log(res.data)
         this.setState({
@@ -30,8 +31,20 @@ class User extends Component {
   }
 
   render() {
+    let animal = this.state.user.animalList
     let showAnimalList
-    if (this.state.user.animalList !== undefined) {
+
+    if (animal === undefined) {
+      showAnimalList = <div><h1>You Are Not Logged In</h1></div>;
+    } 
+     else if (animal.length === 0) {
+      showAnimalList = 
+      (<div>
+        <h5>No animals to track</h5>
+        <Link to="/animals">Add Some</Link>
+        </div>)
+    } 
+    else if (animal !== undefined) {
       showAnimalList = this.state.user.animalList.map(animal => {
         return (
           <div key={animal._id}>
@@ -39,11 +52,17 @@ class User extends Component {
           </div>
         );
       });
-    } else if (this.state.user.animalList.length === 0) {
-      return <div><h1>No animals to track</h1></div>;
     } else {
-      return <div>Loading...</div>
-    }
+      return <div>
+        <p>System Failure</p>
+        <Link to="/login">logging in</Link>
+        </div>
+    } 
+
+  
+    // else {
+    //   showAnimalList = <div>Loading...</div>
+    // }
 
     return (
       <div>

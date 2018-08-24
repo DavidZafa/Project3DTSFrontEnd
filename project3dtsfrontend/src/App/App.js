@@ -14,8 +14,8 @@ import Signup from '../Signup/Signup'
 const signupURL = 'http://localhost:3001/user/signup'
 const loginURL = 'http://localhost:3001/user/login'
 class App extends Component {
-  constructor (props) {
-    super(props);
+  constructor () {
+    super();
     this.state = {
       email: '',
       password: '',
@@ -78,6 +78,7 @@ class App extends Component {
       localStorage.clear()
     }
 
+    
 
   render() {
     return (
@@ -111,9 +112,11 @@ class App extends Component {
   />
   <Route path ='/logout' render={() => {
     return(
-      <Logout handleLogOut={this.handleLogOut}/>
+      <Logout  isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut}/>
     )
   }}/>
+
+
 
   <Route path = '/user/:id' render={() => {
     return(

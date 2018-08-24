@@ -15,9 +15,10 @@ componentDidMount(){
   .then(res => {
     console.log(res.data)
     this.setState({
-      animals: this.state.animals.push(res.data)
+      animals: res.data
     })
   })
+  .catch(err => console.log(err))
 }
 
 render () {
