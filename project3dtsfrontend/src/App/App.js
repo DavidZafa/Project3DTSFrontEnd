@@ -21,8 +21,8 @@ class App extends Component {
       email: '',
       password: '',
       userID: '',
-      selectAnimal: '',
-      userAnimalList: [],
+      selectAnimal: {},
+      // userAnimalList: [],
       isLoggedIn: false
     }
   }
@@ -101,30 +101,39 @@ class App extends Component {
       localStorage.clear()
     }
 
-    getAnimal = e => {
+    getAnimal = (e) => {
       e.preventDefault()
-      const animalArr = {}
+      let animalArr = this.state.selectAnimal
       animalArr[e.target.name] = e.target.value;
       // let list = Array.from(this.state.selectAnimalArr)
       // list.push(animalArr)
       // this.setState({selectAnimalArr: list})
+      // let obj = animalArr
+      // let stringify = JSON.stringify(obj)
       console.log(this.state.selectAnimal)
+      
       this.setState({selectAnimal: animalArr})
     
     }
 
     
-    addAnimal = e => {
-      const { animal } = this.state.selectAnimal
+    addAnimal = (e) => {
       e.preventDefault()
-      // axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
-        axios.post('http://localhost:3001/' + this.state.userID + '/animal/name/add', {animal})
-        .then(res => {
-          console.log(res.data)
-          this.setState({userAnimalList : res.data})
-        })
+      let url = 'http://localhost:3001/user/' + this.state.userID.id + '/animal/name/add'
+      console.log(url)
+      let {name} = this.state.selectAnimal
+        axios.post(url, {name})
+       .catch(err => console.log(err))
       
     }
+
+    handleDelete = (e) => {
+      e.preventDefault()
+      const {name} = this.state.selectAnimal
+      let url = 'http://localhost:3001/user/' + this.state.userID.id + '/animal/name/delete'
+      axios.delete(url, {name})
+      .catch(err => console.log(err))
+  }
     
 
   render() {
@@ -168,7 +177,7 @@ class App extends Component {
 
   <Route path ={`/user/${user.id}`} render={() => {
     return(
-        <User userID={user.id}/>
+        <User handleDelete={this.handleDelete} getAnimal={this.getAnimal} userID={user.id}/>
     )
   }}/>
 

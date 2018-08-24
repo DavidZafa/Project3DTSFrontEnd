@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from "axios";
 import AnimalList from "../User/AnimalList";
+
+
 const url = "http://localhost:3001/user/";
 class User extends Component {
   constructor(props) {
@@ -44,7 +46,7 @@ class User extends Component {
       showAnimalList = animal.map(animal => {
         return (
           <div key={animal._id}>
-            <AnimalList data={animal} />
+            <AnimalList getAnimal={this.getAnimal} handleDelete={this.props.handleDelete} data={animal} />
           </div>
         );
       });
