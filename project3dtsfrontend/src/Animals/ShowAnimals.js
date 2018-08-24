@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import './Animals.css'
 // const addAnimalURL = '/user/:id/animal/name/add'
 
@@ -69,8 +68,9 @@ class ShowAnimals extends Component {
                         <img src={animal.picture} alt={animal.name}/>
                         <span className="card-title">{animal.name}</span>
                         <a className="btn-floating halfway-fab waves-effect waves-light red">
-                        
-                            <input type="submit" name="name" value={animal.name} onClick={this.props.getAnimal}/>
+                        <form>
+                        <input type="submit" name="name" defaultValue={animal.name} onClick={this.props.getAnimal}/>
+                        </form>
                         </a>
                         </div>
                         <div className="card-content">

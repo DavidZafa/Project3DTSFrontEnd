@@ -11,7 +11,7 @@ class Animals extends Component {
     this.state = {
       user: this.props.userID,
       animals:[],
-      selectAnimal: {}
+      // selectAnimal: ''
   }
 }
 
