@@ -153,7 +153,13 @@ class App extends Component {
 
 
   <Route path = '/news' component = {News}/>
-  <Route path = '/animals' component = {Animals}/>
+  <Route path = '/animals' render={() => {
+    return(
+      <Animals userID={user.id}/>
+    )
+  }
+
+  }/>
   <Route path ='/donate' component = {Donate}/>
   </Switch>
 </div>

@@ -1,16 +1,22 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import './Animals.css'
+const addAnimalURL = '/user/:id/animal/name/add'
+
 
 class ShowAnimals extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            animals: this.props.data
+            animals: this.props.data,
+            user: this.props.userID,
+            selectAnimalArr: []
         }
     }
 
     addAnimal = e => {
         e.preventDefault()
+        axios.post('http://localhost:3001/' + this.state.user + '/animal/' + 'name' + '/add')
 
     }
 

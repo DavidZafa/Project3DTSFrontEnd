@@ -5,9 +5,10 @@ import './Animals.css'
 
 const url = 'http://localhost:3001/animals'
 class Animals extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
+      user: this.props.userID,
       animals:[]
   }
 }
@@ -32,7 +33,7 @@ if(animalList.length === 0 ) {
     return (
     <div key={animalInstance._id}>
         <div className="carousel carousel-slider">
-        <ShowAnimals data={animalInstance}/>
+        <ShowAnimals userID={this.state.user} data={animalInstance}/>
         </div>
     </div>)
   })
