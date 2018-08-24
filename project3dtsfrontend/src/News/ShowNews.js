@@ -12,11 +12,13 @@ class ShowNews extends Component {
         const newsarticle = this.state.article
         return(
                 <div>
-                    <h1>{newsarticle.title}</h1>
+                    {/* <h1>{newsarticle.title}</h1>
                     <img src={newsarticle.imageUrl} alt=""/>
                     <p>{newsarticle.author}</p>
                     <p>{newsarticle.description}</p>
-                    <div>{newsarticle.post}</div>
+                    <div>{newsarticle.post}</div> */}
+
+                  
              </div>
         )
     }

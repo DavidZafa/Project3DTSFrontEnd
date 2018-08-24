@@ -43,9 +43,8 @@ class User extends Component {
         <h5>No animals to track</h5>
         <Link to="/animals">Add Some</Link>
         </div>)
-    } 
-    else if (animal !== undefined) {
-      showAnimalList = this.state.user.animalList.map(animal => {
+    } else if (animal !== undefined) {
+      showAnimalList = animal.map(animal => {
         return (
           <div key={animal._id}>
             <AnimalList data={animal} />
