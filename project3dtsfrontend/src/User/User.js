@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import AnimalList from "../User/AnimalList";
-// import {
-//   Card,
-//   CardActions,
-//   CardHeader,
-//   CardMedia,
-//   CardTitle,
-//   CardText
-// } from "material-ui/Card";
 
 const url = "http://localhost:3001/user/";
 class User extends Component {
@@ -23,11 +15,11 @@ class User extends Component {
     //use this when signup/login works
     // axios.get(url + this.props.match.params.id)
     axios
-      .get(url + "5b7d60c42fa6870605b3f9b7")
+      .get(url + "5b7ef964fce1931b3fd567c7")
       .then(res => {
+        console.log(res.data);
         this.setState({
-          user: res.data,
-          news: []
+          user: res.data
         });
       })
       .catch(err => {
@@ -52,7 +44,10 @@ class User extends Component {
     return (
       <div>
         <div className="user-box">
-          <img src="http://sg-fs.com/wp-content/uploads/2017/08/user-placeholder.png" />
+          <img
+            src="http://sg-fs.com/wp-content/uploads/2017/08/user-placeholder.png"
+            alt="profile pic"
+          />
           <h5>Username Goes Here</h5>
         </div>
         <div className="user-news">
