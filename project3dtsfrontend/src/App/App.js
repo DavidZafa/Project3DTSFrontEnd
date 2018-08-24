@@ -10,7 +10,7 @@ import News from '../News/News'
 import Animals from '../Animals/Animals'
 import Donate from '../Donate/Donate'
 import Signup from '../Signup/Signup'
-
+const userURL = 'http://localhost:3001/user/'
 const signupURL = 'http://localhost:3001/user/signup'
 const loginURL = 'http://localhost:3001/user/login'
 class App extends Component {
@@ -19,6 +19,7 @@ class App extends Component {
     this.state = {
       email: '',
       password: '',
+      user: {},
       isLoggedIn: false
     }
   }
@@ -34,6 +35,10 @@ class App extends Component {
       })
     }
   }
+
+  // getUser() {
+  //   axios.get(userURL + )
+  // }
 
   handleInput = e => {
         const userState = this.state;

@@ -11,15 +11,18 @@ class ShowNews extends Component {
     render() {
         const newsarticle = this.state.article
         return(
-                <div>
-                    {/* <h1>{newsarticle.title}</h1>
-                    <img src={newsarticle.imageUrl} alt=""/>
-                    <p>{newsarticle.author}</p>
-                    <p>{newsarticle.description}</p>
-                    <div>{newsarticle.post}</div> */}
+                <ul className="collapsible">
+                    <li>
+                        <div class="collapsible-header">
+                        <h4>{newsarticle.title}</h4>
+                        <img src={newsarticle.imageUrl} alt={newsarticle.title}/>
+                        <p>{newsarticle.author}</p>
+                        <p>{newsarticle.description}</p>
 
-                  
-             </div>
+                        </div>
+                        <div class="collapsible-body">{newsarticle.post}</div>
+                        </li>    
+                </ul>
         )
     }
 }

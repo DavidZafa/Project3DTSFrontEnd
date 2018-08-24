@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import './Animals.css'
 
 class ShowAnimals extends Component {
     constructor(props) {
@@ -7,6 +8,13 @@ class ShowAnimals extends Component {
             animals: this.props.data
         }
     }
+
+    addAnimal = e => {
+        e.preventDefault()
+
+    }
+
+
     render() {
         const animal = this.state.animals
         return(
@@ -18,7 +26,9 @@ class ShowAnimals extends Component {
                         <img src={animal.picture} alt={animal.name}/>
                         <span className="card-title">{animal.name}</span>
                         <a className="btn-floating halfway-fab waves-effect waves-light red">
-                        <i className="material-icons">add</i>
+                        <form>
+                            <input type="submit" value={animal.name} onClick={this.addAnimal}/>
+                        </form>
                         </a>
                         </div>
                         <div className="card-content">
