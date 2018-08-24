@@ -1,88 +1,89 @@
-// import React, {Component} from 'react'
-// import axios from 'axios'
 
-// const url = 'http://localhost:3001/animals'
-// class Animals extends Component {
-//   constructor(){
-//     super()
-//     this.state = {
-//       animals:[]
-//   }
-// }
+import React, {Component} from 'react'
+import axios from 'axios'
+import {Link} from 'react-router-dom'
+import ShowAnimals from './ShowAnimals'
+import './Animals.css'
 
-// componentDidMount(){
-//   axios.get(url)
-//   .then(res => {
-//     console.log(res.data)
-//     this.setState({
-//       animals: this.state.animals.push(res.data)
-//     })
-//   })
-// }
-
-// render () {
-//   return (
-//     <div>
-//     <h1>Animals</h1>
-//       <img src = '' alt=""/>
-//     </div>
-//   )
-// }
-
-
-// }
-
-
-// export default Animals
-
-import React, { Component } from "react";
-import axios from "axios";
-import '../Animals/Animals.css'
-// import ReactDOM from "react-dom";
-// import { lightBlack } from "material-ui/styles/colors";
-// import Route from "react-router-dom";
-// const axios = require("axios");
-const URL = "http://localhost:3001/animals";
+const url = 'http://localhost:3001/animals'
 class Animals extends Component {
-  constructor() {
-    super();
+  constructor(props){
+    super(props)
     this.state = {
-      animals: []
-    };
-  }
-  componentDidMount() {
-    axios
-      .get(URL)
-      .then(res => {
-        let animals = res.data;
-        console.log(animals);
-        //handle success
-        this.setState({ animals });
-      })
-      .catch(error => {
-        //handle error
-        console.log(error);
-      });
-  }
-  render() {
-    const animalList = this.state.animals.map((animal, i) => (
-      <div className="card animal-container">
-        <ul key={i}>
-          <div class="card-image img-container">
-            <img src={animal.picture} className="animals-img" alt="error" />
-          </div>
-          <div className="card-content">
-          <li>Name: {animal.name}</li>
-          <li>Scientific Name: {animal.species}</li>
-          <li>Region: {animal.region}</li>
-          <li>Habitat: {animal.habitat}</li>
-          <li>Region: {animal.population}</li>
-          <li>{animal.about}</li>
-          </div>
-        </ul>
-      </div>
-    ));
-    return <div className="animal-wrapper">{animalList}</div>;
+      user: this.props.userID,
+      animals:[],
+      // selectAnimal: ''
   }
 }
+
+componentDidMount(){
+  axios.get(url)
+  .then(res => {
+    this.setState({
+      animals: res.data
+    })
+  })
+  .catch(err => console.log(err))
+}
+
+//https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array
+// checkForRepeat(){
+//   let arr = this.state.selectAnimalArr
+//   let check = arr.filter((item, position) =>
+//   {return self.indexOf(item) == position})
+//   return check
+// }
+
+// getAnimal = e => {
+//   e.preventDefault()
+//   const animalArr = {}
+//   animalArr[e.target.name] = e.target.value;
+//   // let list = Array.from(this.state.selectAnimalArr)
+//   // list.push(animalArr)
+//   // this.setState({selectAnimalArr: list})
+//   console.log(this.state.selectAnimal)
+//   this.setState({selectAnimal: animalArr})
+
+// }
+
+// addAnimal = e => {
+//   e.preventDefault()
+//   // axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
+//     axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
+
+// }
+
+render () {
+  const user = this.state.user
+  let animalList = this.state.animals
+  let showAnimals
+if(animalList.length === 0 ) {
+  showAnimals = <div>Loading</div>
+} else if (animalList.length > 0) {
+  showAnimals = animalList.map(animalInstance => {
+    return (
+    <div key={animalInstance._id}>
+        <div className="carousel carousel-slider">
+        <ShowAnimals getAnimal={this.props.getAnimal} userID={this.state.user} data={animalInstance}/>
+        </div>
+    </div>)
+  })
+} else {
+  showAnimals = <div>System Failure</div>
+}
+  return (
+    <div>
+    <h1>Animals</h1>
+    <Link to={`/user/${user}`}>
+    <button type="button"
+    className="btn add-animals-btn"
+    >
+    See Changes
+    </button>
+    </Link>
+    {showAnimals}
+    </div>
+  )
+}}
+
 export default Animals;
