@@ -10,19 +10,18 @@ class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {}
+      user: this.props.userID,
+      animalList: []
     };
   }
 
   componentDidMount() {
-    //use this when signup/login works
-    // axios.get(url + this.props.match.params.id)
     axios
-      .get(url + "5b7f40390869af42e15a33d3")
+      .get(url + this.state.user)
       .then(res => {
         console.log(res.data)
         this.setState({
-          user: res.data,
+          animalList: res.data.animalList
         });
       })
       .catch(err => {
@@ -31,7 +30,7 @@ class User extends Component {
   }
 
   render() {
-    let animal = this.state.user.animalList
+    let animal = this.state.animalList
     let showAnimalList
 
     if (animal === undefined) {
@@ -53,8 +52,8 @@ class User extends Component {
       });
     } else {
       return <div>
-        <p>System Failure</p>
-        <Link to="/login">logging in</Link>
+        <p>System Failure. Try</p>
+        <Link to="/login">logging in again</Link>
         </div>
     } 
 

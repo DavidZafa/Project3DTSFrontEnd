@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 class Header extends Component {
   render() {
+    const userID = this.props.userID
     return (
       <header>
         <nav>
@@ -13,7 +14,7 @@ class Header extends Component {
             {this.props.isLoggedIn ? (
               <div>
                 <li>
-                <Link to="/user/:id">User Page</Link>
+                <Link to={`/user/${userID}`}>User Page</Link>
               </li>
                 <li><Link to="/logout">Log Out</Link></li>
               </div>

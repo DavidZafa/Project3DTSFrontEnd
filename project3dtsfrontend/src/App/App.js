@@ -19,7 +19,8 @@ class App extends Component {
     this.state = {
       email: '',
       password: '',
-      user: {},
+      userID: '',
+      userAnimalList: [],
       isLoggedIn: false
     }
   }
@@ -37,9 +38,10 @@ class App extends Component {
   }
 
   getUser() {
-    axios.get(userURL + this.props.match.params.id)
+    axios.get(userURL + this.state.userID)
       .then(res => {
-        this.setState({user: res.data})
+        console.log(res)
+        this.setState({userID: res.data})
       })
       .catch(err => {
         console.log(err)
@@ -61,8 +63,10 @@ class App extends Component {
           })
           .then(response => {
             localStorage.token = response.data.token;
-            this.setState({isLoggedIn: true})
-            console.log(localStorage.token)
+            this.setState({
+              isLoggedIn: true,
+              userID: response.data.payload
+            })
           })
           .catch(err => console.log(err));
       };
@@ -74,9 +78,13 @@ class App extends Component {
             password: this.state.password
         })
         .then(res => {
-          console.log(this.res.data)
             localStorage.token = res.data.token
-            this.setState({isLoggedIn: true})
+            this.setState({
+              isLoggedIn: true,
+              userID: res.data.payload
+            })
+            console.log(this.state)
+            this.getUser()
         })
         .catch(err => console.log(err))
     }
@@ -93,11 +101,12 @@ class App extends Component {
     
 
   render() {
+    const user = this.state.userID
     return (
       <div>
 
 
-  <Header isLoggedIn={this.state.isLoggedIn}/>
+  <Header userID={user.id} isLoggedIn={this.state.isLoggedIn}/>
   <Switch>
   <Route exact path = '/' render={() => {
         return(
@@ -130,13 +139,13 @@ class App extends Component {
 
 
 
-  <Route path = '/user/:id' render={() => {
+  <Route path ={`/user/${user.id}`} render={() => {
     return(
-        <User/>
+        <User userID={user.id}/>
     )
   }}/>
 
-
+{/* path ={`/user/${this.state.userID}`} */}
 
 
 
