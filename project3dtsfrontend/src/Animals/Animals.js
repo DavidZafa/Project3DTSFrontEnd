@@ -65,7 +65,7 @@ if(animalList.length === 0 ) {
   showAnimals = animalList.map(animalInstance => {
     return (
     <div key={animalInstance._id}>
-        <div className="carousel carousel-slider">
+        <div>
         <ShowAnimals getAnimal={this.props.getAnimal} userID={this.state.user} data={animalInstance}/>
         </div>
     </div>)
@@ -74,13 +74,14 @@ if(animalList.length === 0 ) {
   showAnimals = <div>System Failure</div>
 }
   return (
-    <div>
+    <div className="container-fluid">
     <h1>Animals</h1>
     {/* <Link to={`/user/${user}`}> */}
     {/* {showChanges} */}
     {/* </Link> */}
     {showChanges}
-    {showAnimals}
+    <div className="container">    {showAnimals}
+</div>
     </div>
   )
 }}

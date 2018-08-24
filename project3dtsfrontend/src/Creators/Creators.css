@@ -1,6 +1,44 @@
-footer{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+.footer-container{
+  height: auto;
+  background-color: #323F40;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.meet-dev-container {
+  display:flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+span {
+  text-align: center;
+}
+p{
+  padding-top: 1em;
+}
+
+.meet-dev{
+  width: 50%;
+  min-width: 300px;
+}
+
+.dev-box{
+  display:flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 300px;
+}
+
+.dev-img{
+  width: 80%;
+  border: 1px solid blue;
+
 }
