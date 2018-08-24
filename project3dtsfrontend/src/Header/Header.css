@@ -3,7 +3,7 @@ header {
   flex-direction: row nowrap;
   justify-content: space-between;
   align-items: center;
-  background-color: #120E0C;
+  background-color: #120e0c;
   width: 100%;
 }
 
@@ -15,18 +15,20 @@ nav {
 }
 
 .nav-item {
- display: inline-block;
- padding: 0.5em;
-
+  display: inline-block;
+  padding: 0.5em;
+  background-color: #d77d28;
 }
 
 li {
   padding: 1em;
   border: 1px solid blue;
+  background-color: red;
+  /* display: inline-block; */
 }
 
 a {
   text-decoration: none;
-  color:#D77D28;
+  color: #d77d28;
   font-weight: 300;
 }

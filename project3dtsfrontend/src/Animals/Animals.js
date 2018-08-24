@@ -18,7 +18,7 @@ class Animals extends Component {
 
   componentDidMount() {
     axios
-      .get(url)
+      .get(URL)
       .then(res => {
         this.setState({
           animals: res.data

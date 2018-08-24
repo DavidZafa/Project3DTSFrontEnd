@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import './Header.css'
+import "./Header.css";
 import { Link } from "react-router-dom";
 
 class Header extends Component {
   render() {
-    const userID = this.props.userID
+    const userID = this.props.userID;
     return (
       <header>
         <nav>
@@ -15,9 +15,11 @@ class Header extends Component {
             {this.props.isLoggedIn ? (
               <div>
                 <li>
-                <Link to={`/user/${userID}`}>User Page</Link>
-              </li>
-                <li><Link to="/logout">Log Out</Link></li>
+                  <Link to={`/user/${userID}`}>User Page</Link>
+                </li>
+                <li>
+                  <Link to="/logout">Log Out</Link>
+                </li>
               </div>
             ) : (
               <div>
