@@ -6,7 +6,7 @@ import ShowAnimals from './ShowAnimals'
 import ShowChanges from './ShowChanges'
 import './Animals.css'
 
-const url = 'http://localhost:3001/animals'
+const url = 'https://dangerzone1.herokuapp.com/animals'
 class Animals extends Component {
   constructor(props){
     super(props)
@@ -47,12 +47,6 @@ componentDidMount(){
 
 // }
 
-// addAnimal = e => {
-//   e.preventDefault()
-//   // axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
-//     axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
-
-// }
 
 render () {
   const user = this.state.user  

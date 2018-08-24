@@ -11,9 +11,9 @@ import Animals from '../Animals/Animals'
 import Donate from '../Donate/Donate'
 import Signup from '../Signup/Signup'
 import '../App/App.css'
-const userURL = 'http://localhost:3001/user/'
-const signupURL = 'http://localhost:3001/user/signup'
-const loginURL = 'http://localhost:3001/user/login'
+const userURL = 'https://dangerzone1.herokuapp.com/user/'
+const signupURL = 'https://dangerzone1.herokuapp.com/user/signup'
+const loginURL = 'https://dangerzone1.herokuapp.com/user/login'
 class App extends Component {
   constructor () {
     super();
@@ -119,7 +119,7 @@ class App extends Component {
     
     addAnimal = (e) => {
       e.preventDefault()
-      let url = 'http://localhost:3001/user/' + this.state.userID.id + '/animal/name/add'
+      let url = 'https://dangerzone1.herokuapp.com/user/' + this.state.userID.id + '/animal/name/add'
       console.log(url)
       let {name} = this.state.selectAnimal
         axios.post(url, {name})
@@ -130,7 +130,7 @@ class App extends Component {
     handleDelete = (e) => {
       e.preventDefault()
       const {name} = this.state.selectAnimal
-      let url = 'http://localhost:3001/user/' + this.state.userID.id + '/animal/name/delete'
+      let url = 'https://dangerzone1.herokuapp.com/user/' + this.state.userID.id + '/animal/name/delete'
       axios.delete(url, {name})
       .catch(err => console.log(err))
   }

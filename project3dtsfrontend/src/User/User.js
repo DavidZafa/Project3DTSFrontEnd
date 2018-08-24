@@ -4,7 +4,7 @@ import axios from "axios";
 import AnimalList from "../User/AnimalList";
 
 
-const url = "http://localhost:3001/user/";
+const url = "https://dangerzone1.herokuapp.com/user/";
 class User extends Component {
   constructor(props) {
     super(props);

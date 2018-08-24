@@ -99,27 +99,3 @@ export default ShowAnimals
     //for now, we must explicity warn the user to only choose one
     //animal at a time
 
-    // getAnimal = e => {
-    //     e.preventDefault()
-    //     const animalArr = this.state.selectAnimalArr;
-    //     animalArr[e.target.name] = e.target.value;
-    //     console.log(animalArr);
-    //     let joined = this.state.selectAnimalArr.concat(animalArr)
-    //     this.setState({selectAnimalArr: joined})
-      
-    //   }
-
-    // getAnimal = e => {
-    //     e.preventDefault()
-    //     const animalArr = this.state.selectAnimalArr;
-    //     animalArr[e.target.name] = e.target.value;
-    //     console.log(animalArr);
-    //     this.setState({selectAnimalArr : animalArr})
-
-    // }
-
-    // addAnimal = e => {
-    //     e.preventDefault()
-    //     axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
-
-    // }
