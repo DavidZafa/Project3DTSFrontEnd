@@ -36,9 +36,15 @@ class App extends Component {
     }
   }
 
-  // getUser() {
-  //   axios.get(userURL + )
-  // }
+  getUser() {
+    axios.get(userURL + this.props.match.params.id)
+      .then(res => {
+        this.setState({user: res.data})
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   handleInput = e => {
         const userState = this.state;
@@ -68,6 +74,7 @@ class App extends Component {
             password: this.state.password
         })
         .then(res => {
+          console.log(this.res.data)
             localStorage.token = res.data.token
             this.setState({isLoggedIn: true})
         })
