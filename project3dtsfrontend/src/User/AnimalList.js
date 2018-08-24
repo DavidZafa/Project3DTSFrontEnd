@@ -1,23 +1,23 @@
 import React, { Component } from "react";
-import axios from 'axios'
+// import axios from 'axios'
 class AnimalList extends Component {
     constructor(props){
         super(props)
         this.state = {
-            user: this.props
+            animal: this.props.data
         }
     }
 
     handleDelete = (e) => {
-        const { name, picture, species, region, habitat, endangeredLvl, population, about } = this.state.animal
+        // const { name, picture, species, region, habitat, endangeredLvl, population, about } = this.state.animal
         // axios.delete('')
     }
 
     render() {
-        // const animal = this.state.animal
+        const animal = this.state.animal
         return(
             <div>
-                {/* <h1>{animal.name}</h1>
+                <h1>{animal.name}</h1>
                 <img src={animal.picture} alt={animal.name}/>
                 <p>{animal.species}</p>
                 <p>{animal.region}</p>
@@ -28,7 +28,7 @@ class AnimalList extends Component {
                 
 
                 
-                <button type="button" onClick={this.handleDelete}>Remove Animal</button> */}
+                <button type="button" onClick={this.handleDelete}>Remove Animal</button>
 
             </div>
         )

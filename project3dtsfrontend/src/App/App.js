@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import Header from '../Header/Header'
-import Main from '../Main/Main'
-import { Route, Link, Switch } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import axios from 'axios'
 import Home from '../Home/Home'
 import Login from '../Login/Login'
+import Logout from '../Logout/Logout'
 import User from '../User/User'
 import News from '../News/News'
 import Animals from '../Animals/Animals'
@@ -69,7 +69,14 @@ class App extends Component {
         .catch(err => console.log(err))
     }
 
-
+    handleLogOut() {
+      this.setState({
+        username: '',
+        password: '',
+        isLoggedIn: false
+      })
+      localStorage.clear()
+    }
 
 
   render() {
@@ -79,7 +86,12 @@ class App extends Component {
 
   <Header isLoggedIn={this.state.isLoggedIn}/>
   <Switch>
-  <Route exact path = '/' component = {Home}/>
+  <Route exact path = '/' render={() => {
+        return(
+          <Home isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut} />
+        )
+    }}
+  />
   <Route exact path = '/login' render = {(props) => {
     return(
     <Login 
@@ -97,8 +109,17 @@ class App extends Component {
   )
   }}
   />
+  <Route path ='/logout' render={() => {
+    return(
+      <Logout handleLogOut={this.handleLogOut}/>
+    )
+  }}/>
 
-  <Route path = '/user/:id' component = {User}/>
+  <Route path = '/user/:id' render={() => {
+    return(
+        <User/>
+    )
+  }}/>
 
 
 
