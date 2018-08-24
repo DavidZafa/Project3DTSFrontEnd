@@ -1,51 +1,93 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import ReactDOM from "react-dom";
-// import { lightBlack } from "material-ui/styles/colors";
-// import Route from "react-router-dom";
+import { Link } from "react-router-dom";
+import ShowAnimals from "./ShowAnimals";
+import "./Animals.css";
 
 // const axios = require("axios");
 const URL = "http://localhost:3001/animals";
 class Animals extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      user: this.props.userID,
       animals: []
+      // selectAnimal: ''
     };
   }
+
   componentDidMount() {
     axios
-      .get(URL)
+      .get(url)
       .then(res => {
-        let animals = res.data;
-        console.log(animals);
-        //handle success
-        this.setState({ animals });
+        this.setState({
+          animals: res.data
+        });
       })
-      .catch(error => {
-        //handle error
-        console.log(error);
-      });
+      .catch(err => console.log(err));
   }
 
-  render() {
-    const animalList = this.state.animals.map((animal, i) => (
-      <div>
-        <ul key={i}>
-          <li>
-            <img src={animal.picture} alt="error" />
-          </li>
-          <li>Name: {animal.name}</li>
-          <li>Scientific Name: {animal.species}</li>
-          <li>Region: {animal.region}</li>
-          <li>Habitat: {animal.habitat}</li>
-          <li>Region: {animal.population}</li>
-          <li>{animal.about}</li>
-        </ul>
-      </div>
-    ));
+  //https://stackoverflow.com/questions/9229645/remove-duplicate-values-from-js-array
+  // checkForRepeat(){
+  //   let arr = this.state.selectAnimalArr
+  //   let check = arr.filter((item, position) =>
+  //   {return self.indexOf(item) == position})
+  //   return check
+  // }
 
-    return <div className="animal">{animalList}</div>;
+  // getAnimal = e => {
+  //   e.preventDefault()
+  //   const animalArr = {}
+  //   animalArr[e.target.name] = e.target.value;
+  //   // let list = Array.from(this.state.selectAnimalArr)
+  //   // list.push(animalArr)
+  //   // this.setState({selectAnimalArr: list})
+  //   console.log(this.state.selectAnimal)
+  //   this.setState({selectAnimal: animalArr})
+
+  // }
+
+  // addAnimal = e => {
+  //   e.preventDefault()
+  //   // axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
+  //     axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
+
+  // }
+
+  render() {
+    const user = this.state.user;
+    let animalList = this.state.animals;
+    let showAnimals;
+    if (animalList.length === 0) {
+      showAnimals = <div>Loading</div>;
+    } else if (animalList.length > 0) {
+      showAnimals = animalList.map(animalInstance => {
+        return (
+          <div key={animalInstance._id}>
+            <div className="carousel carousel-slider">
+              <ShowAnimals
+                getAnimal={this.props.getAnimal}
+                userID={this.state.user}
+                data={animalInstance}
+              />
+            </div>
+          </div>
+        );
+      });
+    } else {
+      showAnimals = <div>System Failure</div>;
+    }
+    return (
+      <div>
+        <h1>Animals</h1>
+        <Link to={`/user/${user}`}>
+          <button type="button" className="btn add-animals-btn">
+            See Changes
+          </button>
+        </Link>
+        {showAnimals}
+      </div>
+    );
   }
 }
 
