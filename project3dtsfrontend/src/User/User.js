@@ -30,10 +30,11 @@ class User extends Component {
   }
 
   render() {
+    let user = this.state.user
     let animal = this.state.animalList
     let showAnimalList
 
-    if (animal === undefined) {
+    if (user === undefined) {
       showAnimalList = <div><h1>You Are Not Logged In</h1></div>;
     } 
      else if (animal.length === 0) {

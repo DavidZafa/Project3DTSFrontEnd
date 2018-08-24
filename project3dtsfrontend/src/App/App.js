@@ -20,6 +20,7 @@ class App extends Component {
       email: '',
       password: '',
       userID: '',
+      selectAnimal: '',
       userAnimalList: [],
       isLoggedIn: false
     }
@@ -98,6 +99,28 @@ class App extends Component {
       localStorage.clear()
     }
 
+    getAnimal = e => {
+      e.preventDefault()
+      const animalArr = {}
+      animalArr[e.target.name] = e.target.value;
+      // let list = Array.from(this.state.selectAnimalArr)
+      // list.push(animalArr)
+      // this.setState({selectAnimalArr: list})
+      console.log(this.state.selectAnimal)
+      this.setState({selectAnimal: animalArr})
+    
+    }
+    
+    addAnimal = e => {
+      e.preventDefault()
+      // axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
+        axios.post('http://localhost:3001/' + this.state.userID + '/animal/name/add', this.state.selectAnimal)
+        .then(res => {
+          console.log(res.data)
+          this.setState({userAnimalList : res.data})
+        })
+      
+    }
     
 
   render() {
@@ -145,17 +168,10 @@ class App extends Component {
     )
   }}/>
 
-{/* path ={`/user/${this.state.userID}`} */}
-
-
-
-
-
-
   <Route path = '/news' component = {News}/>
   <Route path = '/animals' render={() => {
     return(
-      <Animals userID={user.id}/>
+      <Animals userID={user.id} getAnimal={this.getAnimal} addAnimal={this.addAnimal}/>
     )
   }
 

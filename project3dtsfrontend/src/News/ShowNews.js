@@ -13,14 +13,14 @@ class ShowNews extends Component {
         return(
                 <ul className="collapsible">
                     <li>
-                        <div class="collapsible-header">
+                        <div className="collapsible-header">
                         <h4>{newsarticle.title}</h4>
                         <img src={newsarticle.imageUrl} alt={newsarticle.title}/>
                         <p>{newsarticle.author}</p>
                         <p>{newsarticle.description}</p>
 
                         </div>
-                        <div class="collapsible-body">{newsarticle.post}</div>
+                        <div className="collapsible-body">{newsarticle.post}</div>
                         </li>    
                 </ul>
         )

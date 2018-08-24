@@ -45,10 +45,10 @@ class AnimalList extends Component {
                             <img className="activator" src={animal.picture} alt={animal.name}/>
                             </div>
                             <div className="card-content">
-                            <span className="card-title activator grey-text text-darken-4">{animal.name}<i class="material-icons right">more_vert</i></span>
+                            <span className="card-title activator grey-text text-darken-4">{animal.name}<i className="material-icons right">more_vert</i></span>
                             </div>
                             <div className="card-reveal">
-                            <span className="card-title grey-text text-darken-4">{animal.name}<i class="material-icons right">close</i></span>
+                            <span className="card-title grey-text text-darken-4">{animal.name}<i className="material-icons right">close</i></span>
                                     <p>{animal.species}</p>
                                     <p>{animal.region}</p>
                                     <p>{animal.habitat}</p>
