@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import ShowAnimals from './ShowAnimals'
+import ShowChanges from './ShowChanges'
 import './Animals.css'
 
 const url = 'http://localhost:3001/animals'
@@ -53,7 +54,8 @@ componentDidMount(){
 // }
 
 render () {
-  const user = this.state.user
+  const user = this.state.user  
+  let showChanges = <ShowChanges addAnimal={this.props.addAnimal} />
   let animalList = this.state.animals
   let showAnimals
 if(animalList.length === 0 ) {
@@ -73,13 +75,10 @@ if(animalList.length === 0 ) {
   return (
     <div>
     <h1>Animals</h1>
-    <Link to={`/user/${user}`}>
-    <button type="button"
-    className="btn add-animals-btn"
-    >
-    See Changes
-    </button>
-    </Link>
+    {/* <Link to={`/user/${user}`}> */}
+    {/* {showChanges} */}
+    {/* </Link> */}
+    {showChanges}
     {showAnimals}
     </div>
   )
