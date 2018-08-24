@@ -112,11 +112,13 @@ class App extends Component {
       this.setState({selectAnimal: animalArr})
     
     }
+
     
     addAnimal = e => {
+      const { animal } = this.state.selectAnimal
       e.preventDefault()
       // axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
-        axios.post('http://localhost:3001/' + this.state.userID + '/animal/name/add', this.state.selectAnimal)
+        axios.post('http://localhost:3001/' + this.state.userID + '/animal/name/add', {animal})
         .then(res => {
           console.log(res.data)
           this.setState({userAnimalList : res.data})
