@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './Animals.css'
+
 // const addAnimalURL = '/user/:id/animal/name/add'
 
 
@@ -8,13 +9,80 @@ class ShowAnimals extends Component {
         super(props)
         this.state = {
             animals: this.props.data,
-            // user: this.props.userID,
-            // selectAnimal: ''
-            // selectAnimalArr: []
-        }
+            }
     }
 
-    //idea one:
+
+    render() {
+        const animal = this.state.animals
+        return(
+                <div>
+                  {/* <div className="row">
+                    <div className="col s12 m6">
+                    <div className="card animal-card">
+                        <div className="card-image">
+                        <img src={animal.picture} alt={animal.name}/>
+                        <span className="card-title">{animal.name}</span>
+                        <a className="btn-floating halfway-fab waves-effect waves-light red">
+                        <form>
+                        <input type="submit" name="name" defaultValue={animal.name} onClick={this.props.getAnimal}/>
+                        </form>
+                        </a>
+                        </div>
+                        <div className="card-content">
+                        <p>{animal.species}</p>
+                    <p>{animal.region}</p>
+                    <p>{animal.habitat}</p>
+                    <p>{animal.endangeredLvl}</p>
+                    <p>{animal.population}</p>
+                    <p>{animal.about}</p>
+                        </div>
+                    </div>
+                    </div>
+                </div> */}
+
+<div className="card select-animal-card">
+                            <div className="card-image waves-effect waves-block waves-light">
+                            <img className="activator" src={animal.picture} alt={animal.name}/>
+                            </div>
+                            <div className="card-content">
+                            <span className="card-title activator grey-text text-darken-4">{animal.name}
+                            <a className="btn-floating halfway-fab waves-effect waves-light red">
+                        <form>
+                        <input type="submit" name="name" defaultValue={animal.name} onClick={this.props.handleDelete}/>
+                        </form>
+                        </a>
+                            <i className="material-icons right">more_vert</i>
+                            </span>
+                            </div>
+                            <div className="card-reveal">
+                            <span> <a className="btn-floating halfway-fab waves-effect waves-light red">
+                        <form>
+                        <input type="submit" name="name" defaultValue={animal.name} onClick={this.props.getAnimal}/>
+                        </form>
+                        </a></span>
+                            <span className="card-title grey-text text-darken-4">
+                            {animal.name}
+                            <i className="material-icons right">close</i></span>
+
+                                    <p>{animal.species}</p>
+                                    <p>{animal.region}</p>
+                                    <p>{animal.habitat}</p>
+                                    <p>{animal.endangeredLvl}</p>
+                                    <p>{animal.population}</p>
+                                    <div>{animal.about}</div>                            
+                                    </div>
+                        </div>
+
+                </div>
+        )
+    }
+}
+
+export default ShowAnimals
+
+
+   //idea one:
     //one function gets name as value and sets it's state
     //other function takes that state and and passes it 
     //through the parameters as a post request
@@ -55,38 +123,3 @@ class ShowAnimals extends Component {
     //     axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
 
     // }
-
-
-    render() {
-        const animal = this.state.animals
-        return(
-                <div>
-                  <div className="row">
-                    <div className="col s12 m6">
-                    <div className="card">
-                        <div className="card-image">
-                        <img src={animal.picture} alt={animal.name}/>
-                        <span className="card-title">{animal.name}</span>
-                        <a className="btn-floating halfway-fab waves-effect waves-light red">
-                        <form>
-                        <input type="submit" name="name" defaultValue={animal.name} onClick={this.props.getAnimal}/>
-                        </form>
-                        </a>
-                        </div>
-                        <div className="card-content">
-                        <p>{animal.species}</p>
-                    <p>{animal.region}</p>
-                    <p>{animal.habitat}</p>
-                    <p>{animal.endangeredLvl}</p>
-                    <p>{animal.population}</p>
-                    <p>{animal.about}</p>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                </div>
-        )
-    }
-}
-
-export default ShowAnimals

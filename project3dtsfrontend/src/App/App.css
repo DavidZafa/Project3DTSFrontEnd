@@ -2,4 +2,5 @@ body{
     display:flex;
     flex-flow: row wrap;
     background-color: #f7f7f7;
+    max-width: 100%;
 }

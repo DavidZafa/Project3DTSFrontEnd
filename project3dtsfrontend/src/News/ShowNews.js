@@ -11,10 +11,10 @@ class ShowNews extends Component {
     render() {
         const newsarticle = this.state.article
         return(
-                <ul className="collapsible">
+                <ul className="collapsible news-article-container">
                     <li>
                         <div className="collapsible-header">
-                        <h4>{newsarticle.title}</h4>
+                        <h4 className="flow-text">{newsarticle.title}</h4>
                         <img src={newsarticle.imageUrl} alt={newsarticle.title}/>
                         <p>{newsarticle.author}</p>
                         <p>{newsarticle.description}</p>

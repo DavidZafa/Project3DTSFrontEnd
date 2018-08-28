@@ -1,4 +1,7 @@
 header {
+  width: 100%;
+}
+nav {
   display: flex;
   flex-direction: row nowrap;
   justify-content: space-between;
@@ -7,24 +10,17 @@ header {
   width: 100%;
 }
 
-nav {
+ul {
   width: 100%;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-}
-
-.nav-item {
-  display: inline-block;
-  padding: 0.5em;
-  background-color: #d77d28;
+  flex-direction: row nowrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 li {
   padding: 1em;
-  border: 1px solid blue;
-  background-color: red;
-  /* display: inline-block; */
+  display: inline-block;
 }
 
 a {

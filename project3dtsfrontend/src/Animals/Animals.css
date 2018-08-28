@@ -3,3 +3,20 @@
     position: fixed;
     z-index: 1;
 }
+
+.animal-card {
+    height: auto;
+}
+
+.select-animal-card{
+    width: 50%;
+    height: 50%;
+    min-width: 300px;
+    min-height: 300px;
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.container {
+    border: 1px solid red;
+}

@@ -4,8 +4,14 @@ import { Link } from "react-router-dom";
 import ShowAnimals from "./ShowAnimals";
 import "./Animals.css";
 
-// const axios = require("axios");
-const URL = "http://localhost:3001/animals";
+import React, { Component } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import ShowAnimals from "./ShowAnimals";
+import ShowChanges from "./ShowChanges";
+import "./Animals.css";
+
+const url = "https://dangerzone1.herokuapp.com/animals";
 class Animals extends Component {
   constructor(props) {
     super(props);
@@ -56,6 +62,7 @@ class Animals extends Component {
 
   render() {
     const user = this.state.user;
+    let showChanges = <ShowChanges addAnimal={this.props.addAnimal} />;
     let animalList = this.state.animals;
     let showAnimals;
     if (animalList.length === 0) {
@@ -64,7 +71,7 @@ class Animals extends Component {
       showAnimals = animalList.map(animalInstance => {
         return (
           <div key={animalInstance._id}>
-            <div className="carousel carousel-slider">
+            <div>
               <ShowAnimals
                 getAnimal={this.props.getAnimal}
                 userID={this.state.user}
@@ -78,14 +85,13 @@ class Animals extends Component {
       showAnimals = <div>System Failure</div>;
     }
     return (
-      <div>
+      <div className="container-fluid">
         <h1>Animals</h1>
-        <Link to={`/user/${user}`}>
-          <button type="button" className="btn add-animals-btn">
-            See Changes
-          </button>
-        </Link>
-        {showAnimals}
+        {/* <Link to={`/user/${user}`}> */}
+        {/* {showChanges} */}
+        {/* </Link> */}
+        {showChanges}
+        <div className="container"> {showAnimals}</div>
       </div>
     );
   }
