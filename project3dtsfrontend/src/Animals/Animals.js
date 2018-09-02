@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import ShowAnimals from "./ShowAnimals";
-import "./Animals.css";
+// import React, { Component } from "react";
+// import axios from "axios";
+// import { Link } from "react-router-dom";
+// import ShowAnimals from "./ShowAnimals";
+// import "./Animals.css";
 
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ShowAnimals from "./ShowAnimals";
 import ShowChanges from "./ShowChanges";
 import "./Animals.css";
@@ -24,7 +24,7 @@ class Animals extends Component {
 
   componentDidMount() {
     axios
-      .get(URL)
+      .get(url)
       .then(res => {
         this.setState({
           animals: res.data
