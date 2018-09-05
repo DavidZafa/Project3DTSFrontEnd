@@ -53,13 +53,6 @@ class Animals extends Component {
 
   // }
 
-  // addAnimal = e => {
-  //   e.preventDefault()
-  //   // axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
-  //     axios.post('http://localhost:3001/' + this.state.user + '/animal/' + this.state.selectAnimal + '/add')
-
-  // }
-
   render() {
     const user = this.state.user;
     let showChanges = <ShowChanges addAnimal={this.props.addAnimal} />;

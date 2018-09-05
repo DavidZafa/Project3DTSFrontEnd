@@ -60,48 +60,47 @@ class App extends Component {
 
   handleSignUp = e => {
     e.preventDefault();
-    axios
-      .post(signupURL, {
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(response => {
-        localStorage.token = response.data.token;
-        this.setState({
-          isLoggedIn: true,
-          userID: response.data.payload
-        });
-      })
-      .catch(err => console.log(err));
-  };
-
-  handleLogIn = e => {
-    e.preventDefault();
-    axios
-      .post(loginURL, {
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(res => {
-        localStorage.token = res.data.token;
-        this.setState({
-          isLoggedIn: true,
-          userID: res.data.payload
-        });
-        console.log(this.state);
-        this.getUser();
-      })
-      .catch(err => console.log(err));
-  };
-
-  handleLogOut() {
-    this.setState({
-      username: "",
-      password: "",
-      isLoggedIn: false
+    axios.post(signupURL, {
+      email: this.state.email,
+      password: this.state.password
     });
     localStorage.clear();
-  }
+  };
+
+  getAnimal = e => {
+    e.preventDefault();
+    let animalArr = this.state.selectAnimal;
+    animalArr[e.target.name] = e.target.value;
+    // let list = Array.from(this.state.selectAnimalArr)
+    // list.push(animalArr)
+    // this.setState({selectAnimalArr: list})
+    // let obj = animalArr
+    // let stringify = JSON.stringify(obj)
+    console.log(this.state.selectAnimal);
+
+    this.setState({ selectAnimal: animalArr });
+  };
+
+  addAnimal = e => {
+    e.preventDefault();
+    let url =
+      "https://dangerzone1.herokuapp.com/user/" +
+      this.state.userID.id +
+      "/animal/name/add";
+    console.log(url);
+    let { name } = this.state.selectAnimal;
+    axios.post(url, { name }).catch(err => console.log(err));
+  };
+
+  handleDelete = e => {
+    e.preventDefault();
+    const { name } = this.state.selectAnimal;
+    let url =
+      "https://dangerzone1.herokuapp.com/user/" +
+      this.state.userID.id +
+      "/animal/name/delete";
+    axios.delete(url, { name }).catch(err => console.log(err));
+  };
 
   getAnimal = e => {
     e.preventDefault();
