@@ -12,9 +12,8 @@ class ShowAnimals extends Component {
   render() {
     const animal = this.state.animals;
     return (
-      <div>
         <div className="card select-animal-card">
-          <div className="card-image waves-effect waves-block waves-light">
+          <div className="card-image img-frame waves-effect waves-block waves-light">
             <img className="activator" src={animal.picture} alt={animal.name} />
           </div>
           <div className="card-content">
@@ -48,7 +47,6 @@ class ShowAnimals extends Component {
             <div>{animal.about}</div>
           </div>
         </div>
-      </div>
     );
   }
 }

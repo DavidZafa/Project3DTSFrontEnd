@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import axios from "axios";
 import AnimalList from "../User/AnimalList";
-
+import './User.css'
 
 const url = "https://dangerzone1.herokuapp.com/user/";
 class User extends Component {
@@ -18,7 +18,7 @@ class User extends Component {
     axios
       .get(url + this.state.user)
       .then(res => {
-        console.log(res.data)
+        console.log(res.data);
         this.setState({
           userAnimalList: res.data.animalList
         });
@@ -47,37 +47,36 @@ class User extends Component {
         </div>
       );
     } else if (animal !== undefined) {
-      showAnimalList = animal.map(animal => {
+      showAnimalList = animal.map((animal, i) => {
         return (
-          <div key={animal._id}>
-            <AnimalList getAnimal={this.getAnimal} handleDelete={this.props.handleDelete} data={animal} />
+          <div key={i}>
+            <AnimalList
+              getAnimal={this.getAnimal}
+              handleDelete={this.props.handleDelete}
+              data={animal}
+            />
           </div>
         );
       });
     } else {
-      return <div>
-        <p>System Failure. Try</p>
-        <Link to="/login">logging in again</Link>
+      return (
+        <div>
+          <p>System Failure. Try</p>
+          <Link to="/login">logging in again</Link>
         </div>
-    } 
-
-  
-    // else {
-    //   showAnimalList = <div>Loading...</div>
-    // }
+      );
+    }
 
     return (
-      <div>
+      <div className="user-page-container">
         <div className="user-box">
-
-          <img src="http://sg-fs.com/wp-content/uploads/2017/08/user-placeholder.png" alt="profile pic"/>
+          <img
+            src="http://sg-fs.com/wp-content/uploads/2017/08/user-placeholder.png"
+            alt="profile pic"
+          />
           <h5>Username Goes Here</h5>
         </div>
-        <div className="user-news">
-          <h3>Latest News</h3>
-        </div>
         <div className="user-animallist">
-          <h3>Animal List</h3>
           {showAnimalList}
         </div>
       </div>

@@ -3,7 +3,6 @@ import React, {Component} from 'react'
 import axios from 'axios'
 // import {Link} from 'react-router-dom'
 import ShowAnimals from './ShowAnimals'
-// import ShowChanges from './ShowChanges'
 import './Animals.css'
 
 const url = 'https://dangerzone1.herokuapp.com/animals'
@@ -13,7 +12,6 @@ class Animals extends Component {
     this.state = {
       user: this.props.userID,
       animals:[],
-      // selectAnimal: ''
   }
 }
 
@@ -28,7 +26,6 @@ componentDidMount(){
 }
 render () {
   const user = this.state.user  
-  // let showChanges = <ShowChanges addAnimal={this.addAnimal} />
   let animalList = this.state.animals
   let showAnimals
 if(animalList.length === 0 ) {
@@ -46,10 +43,9 @@ if(animalList.length === 0 ) {
   showAnimals = <div>System Failure</div>
 }
   return (
-    <div className="container-fluid">
+    <div>
     <h1>Animals</h1>
-    {/* {showChanges} */}
-    <div className="container">
+    <div className="flexbox">
     {showAnimals}
     </div>
     </div>

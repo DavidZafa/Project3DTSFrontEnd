@@ -119,13 +119,9 @@ class App extends Component {
        .catch(err => console.log(err))
     }
 
-    
-    // addAnimal = (e) => {
-    //   e.preventDefault()
-    // }
-
     handleDelete = (e) => {
       e.preventDefault()
+      console.log('delete')
       const {name} = this.state.selectAnimal
       let url = 'https://dangerzone1.herokuapp.com/user/' + this.state.userID + '/animal/name/delete'
       axios.delete(url, {name})
