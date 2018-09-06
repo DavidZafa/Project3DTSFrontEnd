@@ -4,12 +4,20 @@
 // import ShowAnimals from "./ShowAnimals";
 // import "./Animals.css";
 
+<<<<<<< HEAD
 import React, { Component } from "react";
 import axios from "axios";
 // import { Link } from "react-router-dom";
 import ShowAnimals from "./ShowAnimals";
 import ShowChanges from "./ShowChanges";
 import "./Animals.css";
+=======
+import React, {Component} from 'react'
+import axios from 'axios'
+// import {Link} from 'react-router-dom'
+import ShowAnimals from './ShowAnimals'
+import './Animals.css'
+>>>>>>> 4aeaf93a3e0f344c4626f66a824850c6218649f2
 
 const url = "https://dangerzone1.herokuapp.com/animals";
 class Animals extends Component {
@@ -17,6 +25,7 @@ class Animals extends Component {
     super(props);
     this.state = {
       user: this.props.userID,
+<<<<<<< HEAD
       animals: []
       // selectAnimal: ''
     };
@@ -89,5 +98,47 @@ class Animals extends Component {
     );
   }
 }
+=======
+      animals:[],
+  }
+}
+
+componentDidMount(){
+  axios.get(url)
+  .then(res => {
+    this.setState({
+      animals: res.data
+    })
+  })
+  .catch(err => console.log(err))
+}
+render () {
+  const user = this.state.user  
+  let animalList = this.state.animals
+  let showAnimals
+if(animalList.length === 0 ) {
+  showAnimals = <div>Loading</div>
+} else if (animalList.length > 0) {
+  showAnimals = animalList.map(animalInstance => {
+    return (
+    <div key={animalInstance._id}>
+        <div>
+        <ShowAnimals getAnimal={this.props.getAnimal} userID={user} data={animalInstance}/>
+        </div>
+    </div>)
+  })
+} else {
+  showAnimals = <div>System Failure</div>
+}
+  return (
+    <div>
+    <h1>Animals</h1>
+    <div className="flexbox">
+    {showAnimals}
+    </div>
+    </div>
+  )
+}}
+>>>>>>> 4aeaf93a3e0f344c4626f66a824850c6218649f2
 
 export default Animals;

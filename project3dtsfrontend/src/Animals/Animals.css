@@ -13,10 +13,22 @@
     height: 50%;
     min-width: 300px;
     min-height: 300px;
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 300px;
+    max-height: 300px;
+    margin: 1em;
 }
 
-.container {
-    border: 1px solid red;
+.img-frame {
+    max-height:200px;
+    overflow-x: hidden;
+}
+
+.flexbox {
+    padding: 2em;
+    width:100%;
+    border: 1px solid blue;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
 }

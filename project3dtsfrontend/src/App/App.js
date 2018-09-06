@@ -22,7 +22,7 @@ class App extends Component {
       password: "",
       userID: "",
       selectAnimal: {},
-      // userAnimalList: [],
+      userAnimalList: [],
       isLoggedIn: false
     };
   }
@@ -43,8 +43,12 @@ class App extends Component {
     axios
       .get(userURL + this.state.userID)
       .then(res => {
-        console.log(res);
-        this.setState({ userID: res.data });
+        let userID = res.data._id;
+        let userAnimalList = res.data.animalList;
+        this.setState({
+          userID: userID,
+          userAnimalList: userAnimalList
+        });
       })
       .catch(err => {
         console.log(err);
@@ -60,32 +64,59 @@ class App extends Component {
 
   handleSignUp = e => {
     e.preventDefault();
-    axios.post(signupURL, {
-      email: this.state.email,
-      password: this.state.password
+    axios
+      .post(signupURL, {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(response => {
+        localStorage.token = response.data.token;
+        this.setState({
+          isLoggedIn: true,
+          userID: response.data.payload
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleLogIn = e => {
+    e.preventDefault();
+    axios
+      .post(loginURL, {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(res => {
+        localStorage.token = res.data.token;
+        this.setState({
+          isLoggedIn: true,
+          userID: res.data.payload
+        });
+        console.log(this.state);
+        this.getUser();
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleLogOut() {
+    this.setState({
+      username: "",
+      password: "",
+      isLoggedIn: false
     });
     localStorage.clear();
-  };
+  }
 
   getAnimal = e => {
     e.preventDefault();
-    let animalArr = this.state.selectAnimal;
-    animalArr[e.target.name] = e.target.value;
-    // let list = Array.from(this.state.selectAnimalArr)
-    // list.push(animalArr)
-    // this.setState({selectAnimalArr: list})
-    // let obj = animalArr
-    // let stringify = JSON.stringify(obj)
+    let animalObj = this.state.selectAnimal;
+    animalObj[e.target.name] = e.target.value;
     console.log(this.state.selectAnimal);
+    this.setState({ selectAnimal: animalObj });
 
-    this.setState({ selectAnimal: animalArr });
-  };
-
-  addAnimal = e => {
-    e.preventDefault();
     let url =
       "https://dangerzone1.herokuapp.com/user/" +
-      this.state.userID.id +
+      this.state.userID +
       "/animal/name/add";
     console.log(url);
     let { name } = this.state.selectAnimal;
@@ -94,45 +125,11 @@ class App extends Component {
 
   handleDelete = e => {
     e.preventDefault();
+    console.log("delete");
     const { name } = this.state.selectAnimal;
     let url =
       "https://dangerzone1.herokuapp.com/user/" +
-      this.state.userID.id +
-      "/animal/name/delete";
-    axios.delete(url, { name }).catch(err => console.log(err));
-  };
-
-  getAnimal = e => {
-    e.preventDefault();
-    let animalArr = this.state.selectAnimal;
-    animalArr[e.target.name] = e.target.value;
-    // let list = Array.from(this.state.selectAnimalArr)
-    // list.push(animalArr)
-    // this.setState({selectAnimalArr: list})
-    // let obj = animalArr
-    // let stringify = JSON.stringify(obj)
-    console.log(this.state.selectAnimal);
-
-    this.setState({ selectAnimal: animalArr });
-  };
-
-  addAnimal = e => {
-    e.preventDefault();
-    let url =
-      "https://dangerzone1.herokuapp.com/user/" +
-      this.state.userID.id +
-      "/animal/name/add";
-    console.log(url);
-    let { name } = this.state.selectAnimal;
-    axios.post(url, { name }).catch(err => console.log(err));
-  };
-
-  handleDelete = e => {
-    e.preventDefault();
-    const { name } = this.state.selectAnimal;
-    let url =
-      "https://dangerzone1.herokuapp.com/user/" +
-      this.state.userID.id +
+      this.state.userID +
       "/animal/name/delete";
     axios.delete(url, { name }).catch(err => console.log(err));
   };
@@ -141,7 +138,7 @@ class App extends Component {
     const user = this.state.userID;
     return (
       <div>
-        <Header userID={user.id} isLoggedIn={this.state.isLoggedIn} />
+        <Header userID={user} isLoggedIn={this.state.isLoggedIn} />
         <Switch>
           <Route
             exact
@@ -158,7 +155,7 @@ class App extends Component {
           <Route
             exact
             path="/login"
-            render={props => {
+            render={() => {
               return (
                 <Login
                   isLoggedIn={this.state.isLoggedIn}
@@ -170,7 +167,7 @@ class App extends Component {
           />
           <Route
             path="/signup"
-            render={props => {
+            render={() => {
               return (
                 <Signup
                   isLoggedIn={this.state.isLoggedIn}
@@ -186,20 +183,23 @@ class App extends Component {
               return (
                 <Logout
                   isLoggedIn={this.state.isLoggedIn}
-                  handleLogOut={this.handleLogOut}
+                  email={this.state.email}
+                  password={this.state.password}
+                  userID={this.state.userID}
                 />
               );
             }}
           />
 
           <Route
-            path={`/user/${user.id}`}
+            path={`/user/${user}`}
             render={() => {
               return (
                 <User
                   handleDelete={this.handleDelete}
                   getAnimal={this.getAnimal}
-                  userID={user.id}
+                  userID={user}
+                  userAnimalList={this.state.userAnimalList}
                 />
               );
             }}
@@ -211,7 +211,7 @@ class App extends Component {
             render={() => {
               return (
                 <Animals
-                  userID={user.id}
+                  userID={user}
                   getAnimal={this.getAnimal}
                   addAnimal={this.addAnimal}
                 />

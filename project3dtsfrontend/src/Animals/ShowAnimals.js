@@ -1,19 +1,28 @@
 import React, { Component } from "react";
 import "./Animals.css";
+<<<<<<< HEAD
 
 // const addAnimalURL = '/user/:id/animal/name/add'
 
+=======
+>>>>>>> 4aeaf93a3e0f344c4626f66a824850c6218649f2
 class ShowAnimals extends Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       animals: this.props.data
+=======
+      animals: this.props.data,
+      selectedAnimal: {}
+>>>>>>> 4aeaf93a3e0f344c4626f66a824850c6218649f2
     };
   }
 
   render() {
     const animal = this.state.animals;
     return (
+<<<<<<< HEAD
       <div>
         {/* <div className="row">
                     <div className="col s12 m6">
@@ -41,11 +50,16 @@ class ShowAnimals extends Component {
 
         <div className="card select-animal-card">
           <div className="card-image waves-effect waves-block waves-light">
+=======
+        <div className="card select-animal-card">
+          <div className="card-image img-frame waves-effect waves-block waves-light">
+>>>>>>> 4aeaf93a3e0f344c4626f66a824850c6218649f2
             <img className="activator" src={animal.picture} alt={animal.name} />
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
               {animal.name}
+<<<<<<< HEAD
               <a className="btn-floating halfway-fab waves-effect waves-light red">
                 <form>
                   <input
@@ -73,6 +87,23 @@ class ShowAnimals extends Component {
                 </form>
               </a>
             </span>
+=======
+              <span>
+                <a className="btn-floating halfway-fab waves-effect waves-light red">
+                  <form>
+                    <input
+                      type="submit"
+                      name="name"
+                      value={animal.name}
+                      onClick={e => this.props.getAnimal(e)}
+                    />
+                  </form>
+                </a>
+              </span>
+            </span>
+          </div>
+          <div className="card-reveal">
+>>>>>>> 4aeaf93a3e0f344c4626f66a824850c6218649f2
             <span className="card-title grey-text text-darken-4">
               {animal.name}
               <i className="material-icons right">close</i>
@@ -86,11 +117,15 @@ class ShowAnimals extends Component {
             <div>{animal.about}</div>
           </div>
         </div>
+<<<<<<< HEAD
       </div>
+=======
+>>>>>>> 4aeaf93a3e0f344c4626f66a824850c6218649f2
     );
   }
 }
 
+<<<<<<< HEAD
 export default ShowAnimals;
 
 //idea one:
@@ -109,3 +144,6 @@ export default ShowAnimals;
 //and that there is probably already a more efficient way to do this
 //for now, we must explicity warn the user to only choose one
 //animal at a time
+=======
+export default ShowAnimals;
+>>>>>>> 4aeaf93a3e0f344c4626f66a824850c6218649f2
