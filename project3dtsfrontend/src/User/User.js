@@ -57,7 +57,7 @@ class User extends Component {
             />
           </div>
         );
-      });
+        });
     } else {
       return (
         <div>
