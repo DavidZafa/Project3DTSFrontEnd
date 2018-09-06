@@ -10,7 +10,7 @@ class User extends Component {
     super(props);
     this.state = {
       user: this.props.userID,
-      animalList: []
+      userAnimalList: this.props.userAnimalList
     };
   }
 
@@ -20,7 +20,7 @@ class User extends Component {
       .then(res => {
         console.log(res.data)
         this.setState({
-          animalList: res.data.animalList
+          userAnimalList: res.data.animalList
         });
       })
       .catch(err => {
@@ -29,19 +29,23 @@ class User extends Component {
   }
 
   render() {
-    let user = this.state.user
-    let animal = this.state.animalList
-    let showAnimalList
+    let user = this.state.user;
+    let animal = this.state.userAnimalList;
+    let showAnimalList;
 
     if (user === undefined) {
-      showAnimalList = <div><h1>You Are Not Logged In</h1></div>;
-    } 
-     else if (animal.length === 0) {
-      showAnimalList = 
-      (<div>
-        <h5>No animals to track</h5>
-        <Link to="/animals">Add Some</Link>
-        </div>)
+      showAnimalList = (
+        <div>
+          <h1>You Are Not Logged In</h1>
+        </div>
+      );
+    } else if (animal.length === 0 || animal === null) {
+      showAnimalList = (
+        <div>
+          <h5>No animals to track</h5>
+          <Link to="/animals">Add Some</Link>
+        </div>
+      );
     } else if (animal !== undefined) {
       showAnimalList = animal.map(animal => {
         return (

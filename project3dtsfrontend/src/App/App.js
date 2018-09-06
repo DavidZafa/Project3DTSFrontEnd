@@ -18,11 +18,11 @@ class App extends Component {
   constructor () {
     super();
     this.state = {
-      email: '',
-      password: '',
-      userID: '',
+      email: "",
+      password: "",
+      userID: "",
       selectAnimal: {},
-      // userAnimalList: [],
+      userAnimalList: [],
       isLoggedIn: false
     }
   }
@@ -42,8 +42,12 @@ class App extends Component {
   getUser() {
     axios.get(userURL + this.state.userID)
       .then(res => {
-        console.log(res)
-        this.setState({userID: res.data})
+        let userID = res.data._id
+        let userAnimalList = res.data.animalList
+        this.setState({ 
+          userID: userID,
+          userAnimalList: userAnimalList
+        });
       })
       .catch(err => {
         console.log(err)
@@ -103,34 +107,27 @@ class App extends Component {
 
     getAnimal = (e) => {
       e.preventDefault()
-      let animalArr = this.state.selectAnimal
-      animalArr[e.target.name] = e.target.value;
-      // let list = Array.from(this.state.selectAnimalArr)
-      // list.push(animalArr)
-      // this.setState({selectAnimalArr: list})
-      // let obj = animalArr
-      // let stringify = JSON.stringify(obj)
-      console.log(this.state.selectAnimal)
-      
-      this.setState({selectAnimal: animalArr})
-    
+      let animalObj = this.state.selectAnimal
+      animalObj[e.target.name] = e.target.value;
+      console.log(this.state.selectAnimal) 
+      this.setState({selectAnimal: animalObj})
+
+      let url = 'https://dangerzone1.herokuapp.com/user/' + this.state.userID + '/animal/name/add'
+      console.log(url)
+      let { name } = this.state.selectAnimal
+        axios.post(url, {name})
+       .catch(err => console.log(err))
     }
 
     
-    addAnimal = (e) => {
-      e.preventDefault()
-      let url = 'https://dangerzone1.herokuapp.com/user/' + this.state.userID.id + '/animal/name/add'
-      console.log(url)
-      let {name} = this.state.selectAnimal
-        axios.post(url, {name})
-       .catch(err => console.log(err))
-      
-    }
+    // addAnimal = (e) => {
+    //   e.preventDefault()
+    // }
 
     handleDelete = (e) => {
       e.preventDefault()
       const {name} = this.state.selectAnimal
-      let url = 'https://dangerzone1.herokuapp.com/user/' + this.state.userID.id + '/animal/name/delete'
+      let url = 'https://dangerzone1.herokuapp.com/user/' + this.state.userID + '/animal/name/delete'
       axios.delete(url, {name})
       .catch(err => console.log(err))
   }
@@ -140,60 +137,89 @@ class App extends Component {
     const user = this.state.userID
     return (
       <div>
+        <Header userID={user} isLoggedIn={this.state.isLoggedIn} />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return (
+                <Home
+                  isLoggedIn={this.state.isLoggedIn}
+                  handleLogOut={this.handleLogOut}
+                />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/login"
+            render={() => {
+              return (
+                <Login
+                  isLoggedIn={this.state.isLoggedIn}
+                  handleInput={this.handleInput}
+                  handleLogIn={this.handleLogIn}
+                />
+              );
+            }}
+          />
+          <Route
+            path="/signup"
+            render={()=> {
+              return (
+                <Signup
+                  isLoggedIn={this.state.isLoggedIn}
+                  handleInput={this.handleInput}
+                  handleSignUp={this.handleSignUp}
+                />
+              );
+            }}
+          />
+          <Route
+            path="/logout"
+            render={() => {
+              return (
+                <Logout
+                  isLoggedIn={this.state.isLoggedIn}
+                  email={this.state.email}
+                  password={this.state.password}
+                  userID={this.state.userID}
+                />
+              );
+            }}
+          />
 
+          <Route
+            path={`/user/${user}`}
+            render={() => {
+              return (
+                <User
+                  handleDelete={this.handleDelete}
+                  getAnimal={this.getAnimal}
+                  userID={user}
+                  userAnimalList={this.state.userAnimalList}
+                />
+              );
+            }}
+          />
 
-  <Header userID={user.id} isLoggedIn={this.state.isLoggedIn}/>
-  <Switch>
-  <Route exact path = '/' render={() => {
-        return(
-          <Home isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut} />
-        )
-    }}
-  />
-  <Route exact path = '/login' render = {(props) => {
-    return(
-    <Login
-    isLoggedIn={this.state.isLoggedIn}
-    handleInput={this.handleInput}
-    handleLogIn = {this.handleLogIn} />
-    )
-  }}
-  />
-  <Route path = '/signup' render ={(props) => {
-    return(<Signup 
-      isLoggedIn = {this.state.isLoggedIn} 
-      handleInput = {this.handleInput} 
-      handleSignUp={this.handleSignUp}  />
-  )
-  }}
-  />
-  <Route path ='/logout' render={() => {
-    return(
-      <Logout  isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut}/>
-    )
-  }}/>
-
-
-
-  <Route path ={`/user/${user.id}`} render={() => {
-    return(
-        <User handleDelete={this.handleDelete} getAnimal={this.getAnimal} userID={user.id}/>
-    )
-  }}/>
-
-  <Route path = '/news' component = {News}/>
-  <Route path = '/animals' render={() => {
-    return(
-      <Animals userID={user.id} getAnimal={this.getAnimal} addAnimal={this.addAnimal}/>
-    )
-  }
-
-  }/>
-  <Route path ='/donate' component = {Donate}/>
-  </Switch>
-</div>
-
-
+          <Route path="/news" component={News} />
+          <Route
+            path="/animals"
+            render={() => {
+              return (
+                <Animals
+                  userID={user}
+                  getAnimal={this.getAnimal}
+                  addAnimal={this.addAnimal}
+                />
+              );
+            }}
+          />
+          <Route path="/donate" component={Donate} />
+        </Switch>
+      </div>
     );
   }
 }
