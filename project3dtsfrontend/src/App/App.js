@@ -227,8 +227,7 @@ class App extends Component {
           <Route path="/donate" component={Donate} />
         </Switch>
       </div>
-    );
+    )
   }
-}
 
-export default App;
+export default App
