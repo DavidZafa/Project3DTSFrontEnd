@@ -32,7 +32,7 @@ const Creators = () => (
       <div className="col s12 m6 l4 dev-box">
         <div className="card meet-dev teal">
           <div className="card-content white-text">
-            <span class="card-title">Tasha</span>
+            <span className="card-title">Tasha</span>
             <img
               className="dev-img"
               src="https://www.sbp-creative.com/wp-content/uploads/2017/01/profile-placeholder.png"
@@ -55,7 +55,7 @@ const Creators = () => (
       <div className="col s12 m6 l4 dev-box">
         <div className="card orange meet-dev">
           <div className="card-content white-text">
-            <span class="card-title">Stephanie</span>
+            <span className="card-title">Stephanie</span>
             <img
               className="dev-img"
               src="https://www.sbp-creative.com/wp-content/uploads/2017/01/profile-placeholder.png"
