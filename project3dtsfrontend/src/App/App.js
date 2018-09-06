@@ -57,7 +57,6 @@ class App extends Component {
   handleInput = e => {
         const userState = this.state;
         userState[e.target.name] = e.target.value;
-        console.log(userState);
         this.setState(userState);
       }
 
@@ -121,11 +120,11 @@ class App extends Component {
 
     handleDelete = (e) => {
       e.preventDefault()
-      console.log('delete')
       const {name} = this.state.selectAnimal
       let url = 'https://dangerzone1.herokuapp.com/user/' + this.state.userID + '/animal/name/delete'
       axios.delete(url, {name})
       .catch(err => console.log(err))
+      console.log('delete')
   }
     
 
