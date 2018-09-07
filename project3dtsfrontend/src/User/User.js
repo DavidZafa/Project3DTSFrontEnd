@@ -4,7 +4,7 @@ import axios from "axios";
 import AnimalList from "../User/AnimalList";
 import './User.css'
 
-const url = "https://dangerzone1.herokuapp.com/user/";
+const url = "http://localhost:3001/user/";
 class User extends Component {
   constructor(props) {
     super(props);
@@ -51,6 +51,7 @@ class User extends Component {
         return (
           <div key={i}>
             <AnimalList
+              user={this.state.user}
               getAnimal={this.getAnimal}
               handleDelete={this.props.handleDelete}
               data={animal}
@@ -71,7 +72,7 @@ class User extends Component {
       <div className="user-page-container">
         <div className="user-box">
           <img
-            src="http://sg-fs.com/wp-content/uploads/2017/08/user-placeholder.png"
+            src="https://sg-fs.com/wp-content/uploads/2017/08/user-placeholder.png"
             alt="profile pic"
           />
           <h5>Username Goes Here</h5>

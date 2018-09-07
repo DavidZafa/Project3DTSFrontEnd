@@ -3,7 +3,7 @@ import './News.css'
 import axios from 'axios'
 import ShowNews from '../News/ShowNews'
 
-const url = 'https://dangerzone1.herokuapp.com/news'
+const url = 'http://localhost:3001/news'
 class News extends Component {
   constructor(){
     super()

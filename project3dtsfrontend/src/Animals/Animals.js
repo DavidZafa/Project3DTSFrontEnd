@@ -5,7 +5,7 @@ import axios from 'axios'
 import ShowAnimals from './ShowAnimals'
 import './Animals.css'
 
-const url = 'https://dangerzone1.herokuapp.com/animals'
+const url = 'http://localhost:3001/animals'
 class Animals extends Component {
   constructor(props){
     super(props)

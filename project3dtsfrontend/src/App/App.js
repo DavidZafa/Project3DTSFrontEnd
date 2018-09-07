@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import Header from '../Header/Header'
-import { Route, Switch } from "react-router-dom"
-import axios from 'axios'
-import Home from '../Home/Home'
-import Login from '../Login/Login'
-import Logout from '../Logout/Logout'
-import User from '../User/User'
-import News from '../News/News'
-import Animals from '../Animals/Animals'
-import Donate from '../Donate/Donate'
-import Signup from '../Signup/Signup'
-import '../App/App.css'
-const userURL = 'https://dangerzone1.herokuapp.com/user/'
-const signupURL = 'https://dangerzone1.herokuapp.com/user/signup'
-const loginURL = 'https://dangerzone1.herokuapp.com/user/login'
+import React, { Component } from "react";
+import Header from "../Header/Header";
+import { Route, Switch } from "react-router-dom";
+import axios from "axios";
+import Home from "../Home/Home";
+import Login from "../Login/Login";
+import Logout from "../Logout/Logout";
+import User from "../User/User";
+import News from "../News/News";
+import Animals from "../Animals/Animals";
+import Donate from "../Donate/Donate";
+import Signup from "../Signup/Signup";
+import "../App/App.css";
+const userURL = "http://localhost:3001/user/";
+const signupURL = "http://localhost:3001/user/signup";
+const loginURL = "http://localhost:3001/user/login";
 class App extends Component {
-  constructor () {
+  constructor() {
     super();
     this.state = {
       email: "",
@@ -24,112 +24,120 @@ class App extends Component {
       selectAnimal: {},
       userAnimalList: [],
       isLoggedIn: false
-    }
+    };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if (localStorage.token) {
       this.setState({
         isLoggedIn: true
-      })
+      });
     } else {
       this.setState({
         isLoggedIn: false
-      })
+      });
     }
   }
 
   getUser() {
-    axios.get(userURL + this.state.userID)
+    axios
+      .get(userURL + this.state.userID)
       .then(res => {
-        let userID = res.data._id
-        let userAnimalList = res.data.animalList
-        this.setState({ 
+        let userID = res.data._id;
+        let userAnimalList = res.data.animalList;
+        this.setState({
           userID: userID,
           userAnimalList: userAnimalList
         });
       })
       .catch(err => {
-        console.log(err)
-      })
+        console.log(err);
+      });
   }
 
   handleInput = e => {
-        const userState = this.state;
-        userState[e.target.name] = e.target.value;
-        this.setState(userState);
-      }
+    const userState = this.state;
+    userState[e.target.name] = e.target.value;
+    this.setState(userState);
+  };
 
-
-      handleSignUp = e => {
-        e.preventDefault();
-        axios.post(signupURL, {
-            email: this.state.email,
-            password: this.state.password
-          })
-          .then(response => {
-            localStorage.token = response.data.token;
-            this.setState({
-              isLoggedIn: true,
-              userID: response.data.payload
-            })
-          })
-          .catch(err => console.log(err));
-      };
-
-      handleLogIn = e => {
-        e.preventDefault()
-        axios.post(loginURL, {
-            email: this.state.email,
-            password: this.state.password
-        })
-        .then(res => {
-            localStorage.token = res.data.token
-            this.setState({
-              isLoggedIn: true,
-              userID: res.data.payload
-            })
-            console.log(this.state)
-            this.getUser()
-        })
-        .catch(err => console.log(err))
-    }
-
-    handleLogOut() {
-      this.setState({
-        username: '',
-        password: '',
-        isLoggedIn: false
+  handleSignUp = e => {
+    e.preventDefault();
+    axios
+      .post(signupURL, {
+        email: this.state.email,
+        password: this.state.password
       })
-      localStorage.clear()
-    }
+      .then(response => {
+        localStorage.token = response.data.token;
+        this.setState({
+          isLoggedIn: true,
+          userID: response.data.payload
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
-    getAnimal = (e) => {
-      e.preventDefault()
-      let animalObj = this.state.selectAnimal
-      animalObj[e.target.name] = e.target.value;
-      console.log(this.state.selectAnimal) 
-      this.setState({selectAnimal: animalObj})
+  handleLogIn = e => {
+    e.preventDefault();
+    axios
+      .post(loginURL, {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(res => {
+        localStorage.token = res.data.token;
+        this.setState({
+          isLoggedIn: true,
+          userID: res.data.payload.id
+        });
+        console.log(this.state);
+        this.getUser();
+      })
+      .catch(err => console.log(err));
+  };
 
-      let url = 'https://dangerzone1.herokuapp.com/user/' + this.state.userID + '/animal/name/add'
-      console.log(url)
-      let { name } = this.state.selectAnimal
-        axios.post(url, {name})
-       .catch(err => console.log(err))
-    }
-
-    handleDelete = (e) => {
-      e.preventDefault()
-      const {name} = this.state.selectAnimal
-      let url = 'https://dangerzone1.herokuapp.com/user/' + this.state.userID + '/animal/name/delete'
-      axios.delete(url, {name})
-      .catch(err => console.log(err))
-      console.log('delete')
+  handleLogOut() {
+    this.setState({
+      username: "",
+      password: "",
+      isLoggedIn: false
+    });
+    localStorage.clear();
   }
-    
+
+  getAnimal = e => {
+    e.preventDefault();
+    let animalObj = this.state.selectAnimal;
+    animalObj[e.target.name] = e.target.value;
+    console.log(this.state.selectAnimal);
+    this.setState({ selectAnimal: animalObj });
+
+    let url = userURL + this.state.userID + "/animal/name/add";
+    console.log(url);
+    let { name } = this.state.selectAnimal;
+    axios.post(url, { name }).catch(err => console.log(err));
+  };
+
+  handleDelete = e => {
+    e.preventDefault();
+    // let animalObj = this.state.selectAnimal;
+    // animalObj[e.target.name] = e.target.value;
+    // console.log(this.state.selectAnimal);
+    // this.setState({ selectAnimal: animalObj });
+    // let url = userURL + this.state.userID + "/animal/name/delete";
+    // axios
+    //   .delete(url, { animalObj })
+    //   .then(res => console.log(res.data))
+    //   .catch(err => console.log(err));
+    // let arr = this.state.userAnimalList;
+    // arr.pop({ animalObj });
+    // this.setState({ userAnimalList: arr });
+    // console.log("delete");
+  };
 
   render() {
-    const user = this.state.userID
+    const user = this.state.userID;
     return (
       <div>
         <Header userID={user} isLoggedIn={this.state.isLoggedIn} />
@@ -161,7 +169,7 @@ class App extends Component {
           />
           <Route
             path="/signup"
-            render={()=> {
+            render={() => {
               return (
                 <Signup
                   isLoggedIn={this.state.isLoggedIn}
