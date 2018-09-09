@@ -121,6 +121,7 @@ class App extends Component {
     let animalObj = this.state.selectAnimal;
     animalObj[e.target.name] = e.target.value;
     this.setState({ selectAnimal: animalObj });
+    console.log(this.state.selectAnimal)
     let url = userURL + this.state.userID + "/animal/name/delete";
     let { name } = this.state.selectAnimal;
     axios({method: 'delete', url: url, data: { name }}).catch(err => console.log(err));
