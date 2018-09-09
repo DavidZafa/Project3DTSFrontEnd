@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from "react";
 
 class Logout extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class Logout extends Component {
     };
   }
   componentDidMount() {
-  this.setState({
+    this.setState({
       email: "",
       password: "",
       userID: "",
@@ -30,4 +30,4 @@ class Logout extends Component {
   }
 }
 
-export default Logout
+export default Logout;

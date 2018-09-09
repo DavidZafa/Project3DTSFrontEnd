@@ -1,36 +1,36 @@
 .user-page-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 .user-box {
-    border: 1px solid blue;
-    width:40%;
-    height: 30%;
+  border: 1px solid blue;
+  width: 40%;
+  height: 30%;
 }
 
 .user-box img {
-    width: 50%;
-    display: block;
-    margin: 0 auto;
-    padding: 10px;
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
 }
 
 .user-box h5 {
-    text-align: center;
+  text-align: center;
 }
 
 .user-animallist {
-    border: 1px solid purple;
-    width: 60%;
-    padding: 1em;
+  border: 1px solid purple;
+  width: 60%;
+  padding: 1em;
 }
 
 @media only screen and (max-width: 768px) {
-    .user-box {
-        width:100%;
-    }
-    .user-animallist {
-        width: 100%;
-    }
+  .user-box {
+    width: 100%;
+  }
+  .user-animallist {
+    width: 100%;
+  }
 }

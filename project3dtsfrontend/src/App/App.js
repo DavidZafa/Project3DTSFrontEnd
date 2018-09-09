@@ -11,9 +11,9 @@ import Animals from "../Animals/Animals";
 import Donate from "../Donate/Donate";
 import Signup from "../Signup/Signup";
 import "../App/App.css";
-const userURL = "https://dangerzone1.herokuapp.com/user/";
-const signupURL = "https://dangerzone1.herokuapp.com/user/signup";
-const loginURL = "https://dangerzone1.herokuapp.com/user/login";
+const userURL = "http://localhost:3001/user/";
+const signupURL = "http://localhost:3001/user/signup";
+const loginURL = "http://localhost:3001/user/login";
 class App extends Component {
   constructor() {
     super();
@@ -56,27 +56,10 @@ class App extends Component {
   }
 
   handleInput = e => {
-        const userState = this.state;
-        userState[e.target.name] = e.target.value;
-        this.setState(userState);
-      }
-
-
-      handleSignUp = e => {
-        e.preventDefault();
-        axios.post(signupURL, {
-            email: this.state.email,
-            password: this.state.password
-          })
-          .then(response => {
-            localStorage.token = response.data.token;
-            this.setState({
-              isLoggedIn: true,
-              userID: response.data.payload
-            })
-          })
-          .catch(err => console.log(err));
-      };
+    const userState = this.state;
+    userState[e.target.name] = e.target.value;
+    this.setState(userState);
+  };
 
   handleSignUp = e => {
     e.preventDefault();
@@ -106,7 +89,7 @@ class App extends Component {
         localStorage.token = res.data.token;
         this.setState({
           isLoggedIn: true,
-          userID: res.data.payload
+          userID: res.data.payload.id
         });
         console.log(this.state);
         this.getUser();
@@ -130,15 +113,28 @@ class App extends Component {
     console.log(this.state.selectAnimal);
     this.setState({ selectAnimal: animalObj });
 
-    handleDelete = (e) => {
-      e.preventDefault()
-      const {name} = this.state.selectAnimal
-      let url = 'https://dangerzone1.herokuapp.com/user/' + this.state.userID + '/animal/name/delete'
-      axios.delete(url, {name})
-      .catch(err => console.log(err))
-      console.log('delete')
-  }
-    
+    let url = userURL + this.state.userID + "/animal/name/add";
+    console.log(url);
+    let { name } = this.state.selectAnimal;
+    axios.post(url, { name }).catch(err => console.log(err));
+  };
+
+  handleDelete = e => {
+    e.preventDefault();
+    // let animalObj = this.state.selectAnimal;
+    // animalObj[e.target.name] = e.target.value;
+    // console.log(this.state.selectAnimal);
+    // this.setState({ selectAnimal: animalObj });
+    // let url = userURL + this.state.userID + "/animal/name/delete";
+    // axios
+    //   .delete(url, { animalObj })
+    //   .then(res => console.log(res.data))
+    //   .catch(err => console.log(err));
+    // let arr = this.state.userAnimalList;
+    // arr.pop({ animalObj });
+    // this.setState({ userAnimalList: arr });
+    // console.log("delete");
+  };
 
   render() {
     const user = this.state.userID;
@@ -227,7 +223,8 @@ class App extends Component {
           <Route path="/donate" component={Donate} />
         </Switch>
       </div>
-    )
+    );
   }
+}
 
-export default App
+export default App;

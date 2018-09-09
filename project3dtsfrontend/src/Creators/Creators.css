@@ -1,6 +1,6 @@
-.footer-container{
+.footer-container {
   height: auto;
-  background-color: #323F40;
+  background-color: #323f40;
 }
 
 a {
@@ -9,7 +9,7 @@ a {
 }
 
 .meet-dev-container {
-  display:flex;
+  display: flex;
   flex-flow: row wrap;
   justify-content: center;
   width: 100%;
@@ -21,24 +21,23 @@ h1 {
 span {
   text-align: center;
 }
-p{
+p {
   padding-top: 1em;
 }
 
-.meet-dev{
+.meet-dev {
   width: 50%;
   min-width: 300px;
 }
 
-.dev-box{
-  display:flex;
+.dev-box {
+  display: flex;
   flex-flow: row wrap;
   justify-content: center;
   width: 300px;
 }
 
-.dev-img{
+.dev-img {
   width: 80%;
   border: 1px solid blue;
-
 }

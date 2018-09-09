@@ -1,43 +1,38 @@
-import React, {Component} from 'react'
-import './News.css'
-import axios from 'axios'
-import ShowNews from '../News/ShowNews'
+import React, { Component } from "react";
+import "./News.css";
+import axios from "axios";
+import ShowNews from "../News/ShowNews";
 
-const url = 'https://dangerzone1.herokuapp.com/news'
+const url = "http://localhost:3001/news";
 class News extends Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
       articles: []
-    }
+    };
   }
 
-  componentDidMount(){
-      axios.get(url)
-        .then(res => {
-          this.setState({
-            articles: res.data
-          })
-        })
-        .catch(err => console.log(err))
+  componentDidMount() {
+    axios
+      .get(url)
+      .then(res => {
+        this.setState({
+          articles: res.data
+        });
+      })
+      .catch(err => console.log(err));
   }
 
-  render(){
-
+  render() {
     let showNews = this.state.articles.map(article => {
-      return(
+      return (
         <div key={article._id}>
-          <ShowNews info={article}/>
+          <ShowNews info={article} />
         </div>
-      )
-    })
-    return(
-      <div className = "news">
-        {showNews}
-      </div>
-    )
+      );
+    });
+    return <div className="news">{showNews}</div>;
   }
 }
 
-
-export default News
+export default News;
