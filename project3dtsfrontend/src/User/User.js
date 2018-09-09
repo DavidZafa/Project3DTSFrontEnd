@@ -28,6 +28,19 @@ class User extends Component {
       });
   }
 
+  deleteUser() {
+    axios({
+      method: "delete",
+      url: "http://localhost:3001/user/"
+    })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(response) {
+        console.log(response);
+      });
+  }
+
   render() {
     let user = this.state.user;
     let animal = this.state.userAnimalList;
@@ -76,6 +89,13 @@ class User extends Component {
             alt="profile pic"
           />
           <h5>Username Goes Here</h5>
+          <Link to={"/"}>
+            <input
+              type="submit"
+              value="DELETE"
+              onClick={this.deleteUser.bind(this)}
+            />
+          </Link>
         </div>
         <div className="user-animallist">{showAnimalList}</div>
       </div>
