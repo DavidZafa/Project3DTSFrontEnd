@@ -60,6 +60,7 @@ class App extends Component {
     userState[e.target.name] = e.target.value;
     this.setState(userState);
   };
+<<<<<<< HEAD
 
   handleSignUp = e => {
     e.preventDefault();
@@ -138,6 +139,73 @@ class App extends Component {
     // userdelete
     e.preventDefault();
     axios.delete(url, {this.state.userID})
+=======
+
+  handleSignUp = e => {
+    e.preventDefault();
+    axios
+      .post(signupURL, {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(response => {
+        localStorage.token = response.data.token;
+        this.setState({
+          isLoggedIn: true,
+          userID: response.data.payload
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleLogIn = e => {
+    e.preventDefault();
+    axios
+      .post(loginURL, {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(res => {
+        localStorage.token = res.data.token;
+        this.setState({
+          isLoggedIn: true,
+          userID: res.data.payload.id
+        });
+        this.getUser();
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleLogOut() {
+    this.setState({
+      username: "",
+      password: "",
+      isLoggedIn: false
+    });
+    localStorage.clear();
+  }
+
+  getAnimal = e => {
+    e.preventDefault();
+    let animalObj = this.state.selectAnimal;
+    animalObj[e.target.name] = e.target.value;
+    this.setState({ selectAnimal: animalObj });
+
+    let url = userURL + this.state.userID + "/animal/name/add";
+    let { name } = this.state.selectAnimal;
+    axios.post(url, { name }).catch(err => console.log(err));
+  };
+
+  handleDelete = e => {
+    e.preventDefault();
+    let animalObj = this.state.selectAnimal;
+    animalObj[e.target.name] = e.target.value;
+    this.setState({ selectAnimal: animalObj });
+    console.log(this.state.selectAnimal)
+    let url = userURL + this.state.userID + "/animal/name/delete";
+    let { name } = this.state.selectAnimal;
+    axios({method: 'delete', url: url, data: { name }}).catch(err => console.log(err));
+>>>>>>> e50abecff8aeb3ad65f4e82c5965d343568a340d
   };
 
   render() {
