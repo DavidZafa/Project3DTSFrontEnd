@@ -120,20 +120,24 @@ class App extends Component {
   };
 
   handleDelete = e => {
+    // e.preventDefault();
+    // let animalObj = this.state.selectAnimal;
+    // animalObj[e.target.name] = e.target.value;
+    // console.log(this.state.selectAnimal);
+    // this.setState({ selectAnimal: animalObj });
+    // let url = userURL + this.state.userID + "/animal/name/delete";
+    // axios
+    //   .delete(url, { animalObj })
+    //   .then(res => console.log(res.data))
+    //   .catch(err => console.log(err));
+    // let arr = this.state.userAnimalList;
+    // arr.pop({ animalObj });
+    // this.setState({ userAnimalList: arr });
+    // console.log("delete");
+
+    // userdelete
     e.preventDefault();
-    let animalObj = this.state.selectAnimal;
-    animalObj[e.target.name] = e.target.value;
-    console.log(this.state.selectAnimal);
-    this.setState({ selectAnimal: animalObj });
-    let url = userURL + this.state.userID + "/animal/name/delete";
-    axios
-      .delete(url, { animalObj })
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
-    let arr = this.state.userAnimalList;
-    arr.pop({ animalObj });
-    this.setState({ userAnimalList: arr });
-    console.log("delete");
+    axios.delete(url, {this.state.userID})
   };
 
   render() {

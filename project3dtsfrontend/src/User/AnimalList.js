@@ -13,6 +13,7 @@ class AnimalList extends Component {
 
   render() {
     const animal = this.state.animal;
+    // this needs to be by id.
     let deletePath = userURL + this.state.user + "/animal/name/delete";
     return (
       <div className="card">
@@ -23,9 +24,13 @@ class AnimalList extends Component {
           <span className="card-title activator grey-text text-darken-4">
             {animal.name}
             <a className="btn-floating halfway-fab waves-effect waves-light red">
-              {/* <form action={deletePath} method="POST" onSubmit={this.props.handleDelete}> */}
-              <input type="submit" name="name" value={animal.name} />
-              {/* </form> */}
+              <form
+                action={deletePath}
+                method="POST"
+                onSubmit={this.props.handleDelete}
+              >
+                <input type="submit" name="name" value={animal.name} />
+              </form>
             </a>
           </span>
         </div>

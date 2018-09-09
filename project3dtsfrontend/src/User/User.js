@@ -28,7 +28,7 @@ class User extends Component {
       });
   }
 
-  deleteUser() {
+  handleDelete() {
     axios({
       method: "delete",
       url: "http://localhost:3001/user/"
@@ -93,7 +93,7 @@ class User extends Component {
             <input
               type="submit"
               value="DELETE"
-              onClick={this.deleteUser.bind(this)}
+              onClick={this.handleDelete.bind(this)}
             />
           </Link>
         </div>
