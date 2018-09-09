@@ -91,7 +91,6 @@ class App extends Component {
           isLoggedIn: true,
           userID: res.data.payload.id
         });
-        console.log(this.state);
         this.getUser();
       })
       .catch(err => console.log(err));
@@ -110,30 +109,21 @@ class App extends Component {
     e.preventDefault();
     let animalObj = this.state.selectAnimal;
     animalObj[e.target.name] = e.target.value;
-    console.log(this.state.selectAnimal);
     this.setState({ selectAnimal: animalObj });
 
     let url = userURL + this.state.userID + "/animal/name/add";
-    console.log(url);
     let { name } = this.state.selectAnimal;
     axios.post(url, { name }).catch(err => console.log(err));
   };
 
   handleDelete = e => {
     e.preventDefault();
-    // let animalObj = this.state.selectAnimal;
-    // animalObj[e.target.name] = e.target.value;
-    // console.log(this.state.selectAnimal);
-    // this.setState({ selectAnimal: animalObj });
-    // let url = userURL + this.state.userID + "/animal/name/delete";
-    // axios
-    //   .delete(url, { animalObj })
-    //   .then(res => console.log(res.data))
-    //   .catch(err => console.log(err));
-    // let arr = this.state.userAnimalList;
-    // arr.pop({ animalObj });
-    // this.setState({ userAnimalList: arr });
-    // console.log("delete");
+    let animalObj = this.state.selectAnimal;
+    animalObj[e.target.name] = e.target.value;
+    this.setState({ selectAnimal: animalObj });
+    let url = userURL + this.state.userID + "/animal/name/delete";
+    let { name } = this.state.selectAnimal;
+    axios({method: 'delete', url: url, data: { name }}).catch(err => console.log(err));
   };
 
   render() {
