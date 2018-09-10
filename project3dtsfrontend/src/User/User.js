@@ -4,7 +4,7 @@ import axios from "axios";
 import AnimalList from "../User/AnimalList";
 import "./User.css";
 
-const url = "http://localhost:3001/user/";
+const url = "https://dangerzone1.herokuapp.com/user/";
 class User extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +31,8 @@ class User extends Component {
   handleDelete() {
     axios({
       method: "delete",
-      url: "http://localhost:3001/user/"
+      // url: "http://localhost:3001/user/"
+      url: "https://dangerzone1.herokuapp.com/user/"
     })
       .then(function(response) {
         console.log(response);
