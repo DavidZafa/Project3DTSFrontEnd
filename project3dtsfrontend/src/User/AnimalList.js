@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./User.css";
-const userURL = "http://localhost:3001/user/";
 
 class AnimalList extends Component {
   constructor(props) {
@@ -13,8 +12,6 @@ class AnimalList extends Component {
 
   render() {
     const animal = this.state.animal;
-    // this needs to be by id.
-    let deletePath = userURL + this.state.user + "/animal/name/delete";
     return (
       <div className="card">
         <div className="card-image img-frame waves-effect waves-block waves-light">

@@ -4,11 +4,7 @@ import axios from "axios";
 import ShowAnimals from "./ShowAnimals";
 import "./Animals.css";
 
-<<<<<<< HEAD
 const url = "http://localhost:3001/animals";
-=======
-const url = 'http://localhost:3001/animals'
->>>>>>> e50abecff8aeb3ad65f4e82c5965d343568a340d
 class Animals extends Component {
   constructor(props) {
     super(props);
