@@ -16,7 +16,7 @@ class Header extends Component {
                 <li className="li-item">
                 <Link to={`/user/${userID}`}>User Page</Link>
               </li>
-                <li className="li-item"><Link to="/logout">Log Out</Link></li>
+                <li className="li-item"><Link to="/logout">Log Out</Link> </li>
               </div>
             ) : (
               <div>
